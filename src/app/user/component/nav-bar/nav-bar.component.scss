@@ -19,6 +19,9 @@ $hover-color: #105583;
             font-weight: bold;
             color: $secondary-color;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
         .navbar-toggler {

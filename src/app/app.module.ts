@@ -10,17 +10,18 @@ import { MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
+import { DividerModule } from 'primeng/divider';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MenubarModule } from 'primeng/menubar';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
+import { CarouselComponent } from './user/component/carousel/carousel.component';
 import { FooterComponent } from './user/component/footer/footer.component';
 import { HeaderComponent } from './user/component/header/header.component';
+import { NavBarComponent } from './user/component/nav-bar/nav-bar.component';
 import { HomeComponent } from './user/pages/home/home.component';
 import { UserLayoutComponent } from './user/user-layout/user-layout.component';
-import { CarouselComponent } from './user/component/carousel/carousel.component';
-import { NavBarComponent } from './user/component/nav-bar/nav-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { NavBarComponent } from './user/component/nav-bar/nav-bar.component';
     FooterComponent,
     HomeComponent,
     CarouselComponent,
-    NavBarComponent
+    NavBarComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,7 @@ import { NavBarComponent } from './user/component/nav-bar/nav-bar.component';
     MenubarModule,
     AvatarModule,
     CarouselModule,
-    TagModule
+    TagModule,DividerModule
   ],
   providers: [
     provideClientHydration(),
