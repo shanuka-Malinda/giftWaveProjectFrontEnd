@@ -38,8 +38,12 @@
             flex-direction: column;
             align-items: center;
             li{
+                h2{
+                    color: rgb(54, 53, 53);
+                }
                 a{
                     text-decoration: none;
+                    color: rgb(46, 44, 44);
                 }
             }
         }
@@ -77,4 +81,11 @@
         margin: 5px;
     }
 }
+}
+
+@media screen and (max-width: 768px) {
+    .bottom{
+        flex-direction: column;
+        align-items: center;
+    }
 }

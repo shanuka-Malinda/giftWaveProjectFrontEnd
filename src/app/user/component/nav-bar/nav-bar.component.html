@@ -1,12 +1,36 @@
 <nav class="navbar">
     <div class="navbar-brand">
-        <a href="#" class="logo"><img src="/assets/blogo.png" alt="" width="68px">GiftWave.com</a>
+        <a href="#" class="logo">
+            <img src="/assets/blogo.png" alt="GiftWave Logo" width="50px"> GiftWave.com
+        </a>
+    </div>
+
+    <ul class="navbar-menu" [ngClass]="{'active': menuActive}">
+        <li class="navbar-item">
+            <a class="navbar-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/home">
+                Home
+            </a>
+        </li>
+        <li class="navbar-item"  >
+            <a class="navbar-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/gifts">
+                Gifts
+            </a>
+        </li>
+        <li class="navbar-item" routerLinkActive="active">
+            <a href="#" class="navbar-link">
+                Services
+            </a>
+        </li>
+        <li class="navbar-item" routerLinkActive="active">
+            <a href="#" class="navbar-link">
+                Contact
+            </a>
+        </li>
+    </ul>
+
+    <div class="navbar-actions">
+        <p-menu #menu [model]="items" [popup]="true"></p-menu>
+        <p-button (onClick)="menu.toggle($event)"  severity="info"[rounded]="true" icon="pi pi-user"    ></p-button>
         <button class="navbar-toggler" (click)="toggleMenu()">&#9776;</button>
     </div>
-    <ul class="navbar-menu" [ngClass]="{'active': menuActive}">
-        <li class="navbar-item"><a href="#" class="navbar-link">Home</a></li>
-        <li class="navbar-item"><a href="#" class="navbar-link">About</a></li>
-        <li class="navbar-item"><a href="#" class="navbar-link">Services</a></li>
-        <li class="navbar-item"><a href="#" class="navbar-link">Contact</a></li>
-    </ul>
 </nav>

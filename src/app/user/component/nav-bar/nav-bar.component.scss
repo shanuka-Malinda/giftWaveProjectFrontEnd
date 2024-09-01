@@ -1,7 +1,12 @@
 $primary-color: #ffffff;
 $secondary-color: #00445b;
 $hover-color: #105583;
-
+.bgColor{
+    background-color: #2795ac;
+}
+.active{
+  border-bottom: 2px solid #105583;;
+}
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -22,15 +27,10 @@ $hover-color: #105583;
             display: flex;
             align-items: center;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
 
-        .navbar-toggler {
-            display: none;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: $secondary-color;
-            cursor: pointer;
+            img {
+                margin-right: 10px;
+            }
         }
     }
 
@@ -39,7 +39,6 @@ $hover-color: #105583;
         list-style: none;
         margin: 0;
         padding: 0;
-        padding-bottom: 10px;
 
         .navbar-item {
             margin-left: 20px;
@@ -51,67 +50,81 @@ $hover-color: #105583;
                 transition: background-color 0.3s ease;
 
                 &:hover {
-                    border-bottom:2px solid $hover-color;
+                     border-bottom: 2px solid $hover-color;
                     color: $secondary-color;
                 }
             }
         }
+
+        @media screen and (max-width: 768px) {
+            display: none;
+
+            &.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background-color: $primary-color;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                width: 200px;
+
+                .navbar-item {
+                    margin: 8px;
+                    padding: 3px;
+
+                    .navbar-link {
+                        padding: 10px;
+                       // border-bottom: 1px solid $hover-color;
+                    }
+                }
+            }
+        }
     }
-}
 
-@media screen and (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
+    .navbar-actions {
+        display: flex;
+        align-items: center;
 
-        .navbar-brand {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .navbar-toggler {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: $secondary-color;
+            cursor: pointer;
+            margin-left: 20px;
+        }
 
+        @media screen and (max-width: 768px) {
             .navbar-toggler {
                 display: block;
             }
-        }
 
-        .navbar-menu {
-            flex-direction: column;
-            width: 100%;
-            display: none;
-             background-color: white;
-             border-radius: 8px;
-             box-shadow: 1px 1px 5px 1px darkgrey;
-            &.active {
-                display: flex;
-            }
-
-            .navbar-item {
-                margin-left: 0;
-                margin-top: 8px;
-                width: 100%;
-
-                .navbar-link {
-                    width: 100%;
-                    text-align: left;
-                    padding: 7px;
-                    // border-bottom: 1px solid $hover-color;
-                }
-            }
+            // p-button {
+            //     display: none;
+            // }
         }
     }
 }
 
 @media screen and (max-width: 480px) {
     .navbar {
+        flex-direction: row;
+        justify-content: space-between;
         padding: 10px;
+    }
 
-        .navbar-brand .logo {
-            font-size: 1.2rem;
-        }
+    .navbar-brand .logo {
+        font-size: 1.2rem;
+    }
 
-        .navbar-menu .navbar-item .navbar-link {
-            padding: 8px;
-        }
+    .navbar-menu .navbar-item .navbar-link {
+        padding: 8px;
+    }
+
+    .navbar-actions .navbar-toggler {
+        font-size: 1.2rem;
     }
 }

@@ -6,22 +6,28 @@ import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterLinkActive } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
 import { DividerModule } from 'primeng/divider';
 import { FileUploadModule } from 'primeng/fileupload';
+import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { CarouselComponent } from './user/component/carousel/carousel.component';
 import { FooterComponent } from './user/component/footer/footer.component';
 import { HeaderComponent } from './user/component/header/header.component';
 import { NavBarComponent } from './user/component/nav-bar/nav-bar.component';
 import { HomeComponent } from './user/pages/home/home.component';
 import { UserLayoutComponent } from './user/user-layout/user-layout.component';
+import { GiftsComponent } from './user/pages/gifts/gifts.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +38,10 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     HomeComponent,
     CarouselComponent,
     NavBarComponent,
+    LoginComponent,
+    RegisterComponent,
+    NotFoundPageComponent,
+    GiftsComponent,
     
   ],
   imports: [
@@ -46,7 +56,8 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     MenubarModule,
     AvatarModule,
     CarouselModule,
-    TagModule,DividerModule
+    RouterLinkActive,
+    TagModule,DividerModule,MenuModule
   ],
   providers: [
     provideClientHydration(),
