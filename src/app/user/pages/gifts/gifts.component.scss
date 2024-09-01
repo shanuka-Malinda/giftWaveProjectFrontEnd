@@ -3,9 +3,31 @@ $product-border-color: #e0e0e0;
 $product-shadow-color: rgba(0, 0, 0, 0.1);
 $primary-color: #1a73e8;
 $secondary-color: #ffcc00;
-$tertiary-color: #ff4081;
-$button-bg-gradient: linear-gradient(to right, #1a73e8, #ff4081);
+$tertiary-color: #2d79f3;
+$button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
 
+.tool{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    .card{
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    ::ng-deep .buy-button .p-button-label {
+        color: #1d849bae; 
+    }
+    ::ng-deep .buy-button .p-button-icon {
+        color: #1d849bae; 
+    }
+    ::ng-deep .buy-button .p-button{
+        border: 1px solid #1d849bae; 
+    }
+}
+.store{
+    display: flex;
+    flex-wrap: wrap;
+}
 .product-card {
     width: 280px;
     background-color: $product-bg-color;
@@ -15,7 +37,7 @@ $button-bg-gradient: linear-gradient(to right, #1a73e8, #ff4081);
     padding: 16px;
     text-align: center;
     font-family: Arial, sans-serif;
-    margin: 0 auto;
+    margin: 7px auto;
 
     .product-header {
         display: flex;

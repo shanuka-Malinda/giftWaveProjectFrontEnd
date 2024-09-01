@@ -26,11 +26,29 @@
                 Contact
             </a>
         </li>
+        <li class="navbar-item" routerLinkActive="active">
+            <a href="#" class="navbar-link">
+                Contact
+            </a>
+        </li>
     </ul>
 
     <div class="navbar-actions">
         <p-menu #menu [model]="items" [popup]="true"></p-menu>
-        <p-button (onClick)="menu.toggle($event)"  severity="info"[rounded]="true" icon="pi pi-user"    ></p-button>
+        <p-button (onClick)="menu.toggle($event)" severity="info" [outlined]="true"  [rounded]="true" icon="pi pi-user"    ></p-button>
         <button class="navbar-toggler" (click)="toggleMenu()">&#9776;</button>
     </div>
 </nav>
+
+<div class="card flex justify-content-center">
+    <p-sidebar [(visible)]="sidebarVisible" styleClass="w-30rem">
+        <ng-template pTemplate="header">
+            <span class="font-semibold text-xl">Sidebar</span>
+        </ng-template>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+    </p-sidebar>
+    <!-- <p-button (onClick)="sidebarVisible = true" icon="pi pi-arrow-right" /> -->
+</div>

@@ -1,14 +1,205 @@
-<div class="product-card">
+<div class="tool">
+    <div class="card flex justify-content-center">
+        <p-dropdown [options]="categories" [(ngModel)]="selectedCategories" optionLabel="name" [filter]="true"
+            filterBy="name" [showClear]="true" placeholder="Choose Category">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-2">
+                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                        [class]="'flag flag-' + selectedCategories.code.toLowerCase()" style="width: 18px" />
+                    <div>{{ selectedOption.name }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-country pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                        [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px" />
+                    <div>{{ country.name }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+    </div>
 
-    <div class="product-image">
-        <img src="/assets/shoe.png" alt="Product Image" />
+    <div class="card flex justify-content-center">
+        <p-multiSelect [options]="giftBox" [(ngModel)]="selectedGifts" placeholder="Select a Country" optionLabel="name"
+            >
+            <ng-template let-value pTemplate="selectedItems">
+                <div class="inline-flex align-items-center gap-2 px-1" *ngFor="let option of value">
+                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                        [class]="'flag flag-' + option.code.toLowerCase()" style="width: 18px" />
+                    <div>{{ option.name }},</div>
+                </div>
+                <div *ngIf="!value || value.length === 0">My Gifts Box</div>
+            </ng-template>
+            <ng-template let-country pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                        [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px" />
+                    <div>{{ country.name }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-country pTemplate="footer">
+                <div class="py-2 px-3">
+                    <b>
+                        {{ selectedGifts ? selectedGifts.length : 0 }}
+                    </b>
+                    item{{ (selectedGifts ? selectedGifts.length : 0) > 1 ? 's' : '' }} selected.
+                </div>
+            </ng-template>
+        </p-multiSelect>
     </div>
-    <div class="product-info">
-        <h2 class="product-name">ADDIDAS GAZE ZX</h2>
-        <p class="product-description">
-            Lorem ipsum is simply dummy text of the printing and typesetting industry.
-        </p>
-        <div class="product-price">$09.00</div>
+    <p-button label="Buy & Send" icon="pi pi-send" outlined="true" class="buy-button" />
+</div>
+
+
+
+
+
+<div class="store">
+
+
+    <div class="product-card">
+
+        <div class="product-image">
+            <img src="/assets/box.png" alt="Product Image" />
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
+            <p class="product-description">
+                Lorem ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <div class="product-price">$09.00</div>
+        </div>
+        <button class="add-to-cart-button">Add To Gift Box</button>
     </div>
-    <button class="add-to-cart-button">Add To Gift Box</button>
+    <div class="product-card">
+
+        <div class="product-image">
+            <img src="/assets/box.png" alt="Product Image" />
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
+            <p class="product-description">
+                Lorem ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <div class="product-price">$09.00</div>
+        </div>
+        <button class="add-to-cart-button">Add To Gift Box</button>
+    </div>
+    <div class="product-card">
+
+        <div class="product-image">
+            <img src="/assets/box.png" alt="Product Image" />
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
+            <p class="product-description">
+                Lorem ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <div class="product-price">$09.00</div>
+        </div>
+        <button class="add-to-cart-button">Add To Gift Box</button>
+    </div>
+    <div class="product-card">
+
+        <div class="product-image">
+            <img src="/assets/box.png" alt="Product Image" />
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
+            <p class="product-description">
+                Lorem ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <div class="product-price">$09.00</div>
+        </div>
+        <button class="add-to-cart-button">Add To Gift Box</button>
+    </div>
+    <div class="product-card">
+
+        <div class="product-image">
+            <img src="/assets/box.png" alt="Product Image" />
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
+            <p class="product-description">
+                Lorem ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <div class="product-price">$09.00</div>
+        </div>
+        <button class="add-to-cart-button">Add To Gift Box</button>
+    </div>
+    <div class="product-card">
+
+        <div class="product-image">
+            <img src="/assets/box.png" alt="Product Image" />
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
+            <p class="product-description">
+                Lorem ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <div class="product-price">$09.00</div>
+        </div>
+        <button class="add-to-cart-button">Add To Gift Box</button>
+    </div>
+    <div class="product-card">
+
+        <div class="product-image">
+            <img src="/assets/box.png" alt="Product Image" />
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
+            <p class="product-description">
+                Lorem ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <div class="product-price">$09.00</div>
+        </div>
+        <button class="add-to-cart-button">Add To Gift Box</button>
+    </div>
+    <div class="product-card">
+
+        <div class="product-image">
+            <img src="/assets/box.png" alt="Product Image" />
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
+            <p class="product-description">
+                Lorem ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <div class="product-price">$09.00</div>
+        </div>
+        <button class="add-to-cart-button">Add To Gift Box</button>
+    </div>
+    <div class="product-card">
+
+        <div class="product-image">
+            <img src="/assets/box.png" alt="Product Image" />
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
+            <p class="product-description">
+                Lorem ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <div class="product-price">$09.00</div>
+        </div>
+        <button class="add-to-cart-button">Add To Gift Box</button>
+    </div>
+    <div class="product-card">
+
+        <div class="product-image">
+            <img src="/assets/box.png" alt="Product Image" />
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
+            <p class="product-description">
+                Lorem ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <div class="product-price">$09.00</div>
+        </div>
+        <button class="add-to-cart-button">Add To Gift Box</button>
+    </div>
+
+
+
+
+
 </div>
