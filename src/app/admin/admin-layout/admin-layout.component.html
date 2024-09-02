@@ -1,3 +1,6 @@
+<div class="date">
+    <h4>Today's Date  </h4> &nbsp;<h3> {{ currentDate | date:'yyyy-MM-dd' }}</h3>
+</div>
 <div class="card flex flex-wrap justify-content-center gap-2">
     <p-sidebar [(visible)]="sidebarVisible" position="left">
 
@@ -12,31 +15,31 @@
             <div class="sidebar-menu">
                 <ul>
                     <li class="menu-item">
-                        <a href="#">
+                        <a routerLink="/admin/dash">
                             <i class="pi pi-home"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#">
-                            <i class="pi pi-bookmark"></i>
-                            <span>Bookmarks</span>
+                        <a routerLink="/admin/product">
+                            <i class="pi pi-warehouse"></i>
+                            <span>Products</span>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#">
+                        <a routerLink="/admin/report">
                             <i class="pi pi-chart-line"></i>
                             <span>Reports</span>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#">
+                        <a routerLink="/admin/users">
                             <i class="pi pi-users"></i>
                             <span>Users</span>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="#">
+                        <a routerLink="/admin/setting">
                             <i class="pi pi-cog"></i>
                             <span>Settings</span>
                         </a>
@@ -56,3 +59,5 @@
 
     </p-sidebar>
     <p-button type="button" class="mr-2" (onClick)="sidebarVisible = true" icon="pi pi-arrow-right" />
+
+    <router-outlet></router-outlet>

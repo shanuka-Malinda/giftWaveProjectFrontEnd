@@ -11,20 +11,33 @@ import { AccordionModule } from 'primeng/accordion';
 import { MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
+import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { FieldsetModule } from 'primeng/fieldset';
 import { FileUploadModule } from 'primeng/fileupload';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { PanelModule } from 'primeng/panel';
+import { ProgressBarModule } from 'primeng/progressbar';
 import { SidebarModule } from 'primeng/sidebar';
+import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
+import { DashComponent } from './admin/pages/dash/dash.component';
+import { ProductsComponent } from './admin/pages/products/products.component';
+import { UsersComponent } from './admin/pages/users/users.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
@@ -36,8 +49,10 @@ import { GiftsComponent } from './user/pages/gifts/gifts.component';
 import { HomeComponent } from './user/pages/home/home.component';
 import { TermsAndServicesComponent } from './user/pages/terms-and-services/terms-and-services.component';
 import { UserLayoutComponent } from './user/user-layout/user-layout.component';
+
 @NgModule({
   declarations: [
+    
     AppComponent,
     AdminLayoutComponent,
     UserLayoutComponent,
@@ -51,9 +66,18 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     NotFoundPageComponent,
     GiftsComponent,
     TermsAndServicesComponent,
+    DashComponent,
+    ProductsComponent,
+    UsersComponent,
     
   ],
   imports: [
+    ProgressBarModule,
+    InputTextareaModule,
+    FloatLabelModule,
+    InputTextModule,
+    InputIconModule,
+    IconFieldModule,
     BrowserModule,
     AppRoutingModule,
     CalendarModule,
@@ -73,8 +97,8 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     DropdownModule,
     SidebarModule,
     AccordionModule,
-    BadgeModule,FieldsetModule,
-    DialogModule
+    BadgeModule,FieldsetModule,PanelModule,
+    DialogModule,DataViewModule,TableModule,BreadcrumbModule
   ],
   providers: [
     provideClientHydration(),

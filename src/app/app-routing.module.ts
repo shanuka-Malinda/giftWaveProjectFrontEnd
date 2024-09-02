@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
+import { DashComponent } from './admin/pages/dash/dash.component';
+import { ProductsComponent } from './admin/pages/products/products.component';
+import { UsersComponent } from './admin/pages/users/users.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
@@ -15,14 +18,20 @@ const routes: Routes = [
     path: "", component: UserLayoutComponent, children: [
       { path: "", redirectTo: 'home', pathMatch: 'full' },
       { path: "home", component: HomeComponent },
-      {path:"gifts",component:GiftsComponent},
-      {path:"terms",component:TermsAndServicesComponent}
+      { path: "gifts", component: GiftsComponent },
+      { path: "terms", component: TermsAndServicesComponent }
     ]
   },
-  { path: "admin", component: AdminLayoutComponent },
+  {
+    path: "admin", component: AdminLayoutComponent, children: [
+      { path: "dash", component: DashComponent },
+      { path: "product", component: ProductsComponent },
+      { path: "users", component: UsersComponent }
+    ]
+  },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  {path:"**",component:NotFoundPageComponent}
+  { path: "**", component: NotFoundPageComponent }
 ];
 
 @NgModule({

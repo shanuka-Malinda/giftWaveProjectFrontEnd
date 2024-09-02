@@ -1,6 +1,8 @@
 $carousel-width: 75%;
-$item-width: 100% / 5; // Assuming 5 items visible at a time
+//$item-width: 100% / 5; // Assuming 5 items visible at a time
 $animation-duration: 15s;
+@use 'sass:math';
+$item-width: math.div(100%, 5);
 
 .carousel-container {
   width: $carousel-width;

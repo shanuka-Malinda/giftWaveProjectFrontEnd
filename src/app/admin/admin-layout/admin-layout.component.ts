@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
 })
 export class AdminLayoutComponent {
 
-  sidebarVisible: boolean = false;
+   sidebarVisible: boolean = false;
+
+  currentDate: string;
+
+  constructor() {
+    const date = new Date();
+    this.currentDate = date.toDateString();
+
+  }
+
+
+
 }
