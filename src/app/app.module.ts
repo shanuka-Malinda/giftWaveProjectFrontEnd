@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterLinkActive } from '@angular/router';
+import { AccordionModule } from 'primeng/accordion';
 import { MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
 import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
+import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
+import { FieldsetModule } from 'primeng/fieldset';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
@@ -30,6 +34,7 @@ import { HeaderComponent } from './user/component/header/header.component';
 import { NavBarComponent } from './user/component/nav-bar/nav-bar.component';
 import { GiftsComponent } from './user/pages/gifts/gifts.component';
 import { HomeComponent } from './user/pages/home/home.component';
+import { TermsAndServicesComponent } from './user/pages/terms-and-services/terms-and-services.component';
 import { UserLayoutComponent } from './user/user-layout/user-layout.component';
 @NgModule({
   declarations: [
@@ -45,6 +50,7 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     RegisterComponent,
     NotFoundPageComponent,
     GiftsComponent,
+    TermsAndServicesComponent,
     
   ],
   imports: [
@@ -60,7 +66,15 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     AvatarModule,
     CarouselModule,
     RouterLinkActive,
-    TagModule,DividerModule,MenuModule,MultiSelectModule,DropdownModule,SidebarModule
+    TagModule,
+    DividerModule,
+    MenuModule,
+    MultiSelectModule,
+    DropdownModule,
+    SidebarModule,
+    AccordionModule,
+    BadgeModule,FieldsetModule,
+    DialogModule
   ],
   providers: [
     provideClientHydration(),

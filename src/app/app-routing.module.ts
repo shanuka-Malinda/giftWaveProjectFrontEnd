@@ -6,6 +6,7 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { GiftsComponent } from './user/pages/gifts/gifts.component';
 import { HomeComponent } from './user/pages/home/home.component';
+import { TermsAndServicesComponent } from './user/pages/terms-and-services/terms-and-services.component';
 import { UserLayoutComponent } from './user/user-layout/user-layout.component';
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
     path: "", component: UserLayoutComponent, children: [
       { path: "", redirectTo: 'home', pathMatch: 'full' },
       { path: "home", component: HomeComponent },
-      {path:"gifts",component:GiftsComponent}
+      {path:"gifts",component:GiftsComponent},
+      {path:"terms",component:TermsAndServicesComponent}
     ]
   },
   { path: "admin", component: AdminLayoutComponent },

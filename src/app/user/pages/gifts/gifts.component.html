@@ -4,50 +4,49 @@
             filterBy="name" [showClear]="true" placeholder="Choose Category">
             <ng-template pTemplate="selectedItem" let-selectedOption>
                 <div class="flex align-items-center gap-2">
-                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
-                        [class]="'flag flag-' + selectedCategories.code.toLowerCase()" style="width: 18px" />
+                    <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                        [class]="'flag flag-' + selectedCategories.code.toLowerCase()" style="width: 18px" /> -->
                     <div>{{ selectedOption.name }}</div>
                 </div>
             </ng-template>
             <ng-template let-country pTemplate="item">
                 <div class="flex align-items-center gap-2">
-                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
-                        [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px" />
+                    <!-- <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                        [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px" /> -->
                     <div>{{ country.name }}</div>
                 </div>
             </ng-template>
         </p-dropdown>
     </div>
 
-    <div class="card flex justify-content-center">
-        <p-multiSelect [options]="giftBox" [(ngModel)]="selectedGifts" placeholder="Select a Country" optionLabel="name"
-            >
-            <ng-template let-value pTemplate="selectedItems">
-                <div class="inline-flex align-items-center gap-2 px-1" *ngFor="let option of value">
-                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
-                        [class]="'flag flag-' + option.code.toLowerCase()" style="width: 18px" />
-                    <div>{{ option.name }},</div>
-                </div>
-                <div *ngIf="!value || value.length === 0">My Gifts Box</div>
-            </ng-template>
-            <ng-template let-country pTemplate="item">
-                <div class="flex align-items-center gap-2">
-                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
-                        [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px" />
-                    <div>{{ country.name }}</div>
-                </div>
-            </ng-template>
-            <ng-template let-country pTemplate="footer">
-                <div class="py-2 px-3">
-                    <b>
-                        {{ selectedGifts ? selectedGifts.length : 0 }}
-                    </b>
-                    item{{ (selectedGifts ? selectedGifts.length : 0) > 1 ? 's' : '' }} selected.
-                </div>
-            </ng-template>
-        </p-multiSelect>
+    <div style="display: flex;align-items: center;">
+        <p-button (onClick)="showDialog()" label="Box" icon="pi pi-gift" class="box" badge="2" outlined="true"
+        badgeClass="p-badge-contrast"  />
+        <p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
+            [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+            <p class="mb-5">
+                Lorem ipsum dolor sit amet...
+            </p>
+            <p class="mb-5">
+                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
+            </p>
+            <p class="mb-5">
+                At vero eos et accusamus et iusto odio dignissimos...
+            </p>
+            <p class="mb-5">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+            </p>
+            <p class="mb-5">
+                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
+            </p>
+            <p>
+                At vero eos et accusamus et iusto odio dignissimos...
+            </p>
+
+            <p-button label="Buy & Send" icon="pi pi-send" outlined="true" class="buy-button" />
+        </p-dialog>
+        
     </div>
-    <p-button label="Buy & Send" icon="pi pi-send" outlined="true" class="buy-button" />
 </div>
 
 

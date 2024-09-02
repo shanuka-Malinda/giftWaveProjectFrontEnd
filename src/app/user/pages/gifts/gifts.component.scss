@@ -9,10 +9,10 @@ $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
 .tool{
     display: flex;
     width: 100%;
-    justify-content: flex-end;
+    flex-wrap: wrap;
+    justify-content: space-between;
     .card{
-        margin-left: 5px;
-        margin-right: 5px;
+        margin: 5px;
     }
     ::ng-deep .buy-button .p-button-label {
         color: #1d849bae; 
@@ -24,6 +24,9 @@ $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
         border: 1px solid #1d849bae; 
     }
 }
+// .box{
+     
+// }
 .store{
     display: flex;
     flex-wrap: wrap;

@@ -1,1 +1,58 @@
-<p>admin-layout works!</p>
+<div class="card flex flex-wrap justify-content-center gap-2">
+    <p-sidebar [(visible)]="sidebarVisible" position="left">
+
+
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="/assets/blogo.png" alt="GiftWave Logo" height="50px">
+                    <span>GiftWave</span>
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="menu-item">
+                        <a href="#">
+                            <i class="pi pi-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#">
+                            <i class="pi pi-bookmark"></i>
+                            <span>Bookmarks</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#">
+                            <i class="pi pi-chart-line"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#">
+                            <i class="pi pi-users"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#">
+                            <i class="pi pi-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-footer">
+                <a href="#" class="user-profile">
+                    <i class="pi pi-sign-out"></i>
+                    <span>Log out</span>
+                </a>
+            </div>
+        </div>
+
+
+
+
+    </p-sidebar>
+    <p-button type="button" class="mr-2" (onClick)="sidebarVisible = true" icon="pi pi-arrow-right" />

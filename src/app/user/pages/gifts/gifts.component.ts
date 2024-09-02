@@ -16,18 +16,6 @@ export class GiftsComponent implements OnInit {
   selectedCategories: string | any;
 
   constructor() {
-    this.giftBox = [
-      { name: 'Australia', code: 'AU' }
-      // { name: 'Brazil', code: 'BR' },
-      // { name: 'China', code: 'CN' },
-      // { name: 'Egypt', code: 'EG' },
-      // { name: 'France', code: 'FR' },
-      // { name: 'Germany', code: 'DE' },
-      // { name: 'India', code: 'IN' },
-      // { name: 'Japan', code: 'JP' },
-      // { name: 'Spain', code: 'ES' },
-      // { name: 'United States', code: 'US' }
-    ];
     this.categories = [
       { name: 'Foods', code: 'fd' }
     ]
@@ -35,4 +23,10 @@ export class GiftsComponent implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
+
+  visible: boolean = false;
+
+    showDialog() {
+        this.visible = true;
+    }
 }
