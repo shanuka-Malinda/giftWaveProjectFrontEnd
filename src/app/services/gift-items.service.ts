@@ -17,5 +17,7 @@ export class GiftItemsService {
     return this.http.post<any>(this.api+"/add", product);
   }
 
-  
+  deleteGiftItem(product: any): Observable<any> {
+    return this.http.put<any>(this.api+"/delete", product);
+  }
 }

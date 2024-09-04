@@ -6,34 +6,47 @@ $secondary-color: #ffcc00;
 $tertiary-color: #2d79f3;
 $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
 
-.tool{
+.tool {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-between;
-    .card{
+
+    .card {
         margin: 5px;
     }
+
     ::ng-deep .buy-button .p-button-label {
-        color: #1d849bae; 
+        color: #1d849bae;
     }
+
     ::ng-deep .buy-button .p-button-icon {
-        color: #1d849bae; 
+        color: #1d849bae;
     }
-    ::ng-deep .buy-button .p-button{
-        border: 1px solid #1d849bae; 
+
+    ::ng-deep .buy-button .p-button {
+        border: 1px solid #1d849bae;
     }
 }
+
 // .box{
-     
+
 // }
-.store{
+.store {
     display: flex;
     flex-wrap: wrap;
+    // background-color: black;
 }
+
 .product-card {
+    // position: relative;
     width: 280px;
-    background-color: $product-bg-color;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // background-color: $product-bg-color;
+    background-color: transparent;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px $product-shadow-color;
@@ -60,6 +73,7 @@ $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
         img {
             width: 100%;
             max-width: 200px;
+            max-height: 200px;
             margin: 0 auto 16px;
         }
     }
@@ -75,7 +89,12 @@ $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
             font-size: 0.9rem;
             color: #666666;
             margin-bottom: 12px;
+
+            a {
+                text-decoration: none;
+            }
         }
+
         .product-price {
             font-size: 1.2rem;
             font-weight: bold;

@@ -76,8 +76,8 @@
                 <td>&nbsp;{{item.unitPrice | currency:'LKR':'code'}}</td>
                 <td>{{item.category}}</td>
                 <td>
-                    <p-button icon="pi pi-file-edit" label="Edit" [text]="true" [raised]="true" />
-                    <p-button icon="pi pi-trash" label="Remove" [text]="true" [raised]="true" severity="danger" />
+                    <p-button icon="pi pi-file-edit" label="Edit" [text]="true" [raised]="true"  />
+                    <p-button icon="pi pi-trash" label="Remove" [text]="true" [raised]="true" severity="danger" (onClick)="deleteProduct(item.id)" />
                 </td>
             </tr>
         </tbody>

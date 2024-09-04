@@ -12,20 +12,11 @@ export class ProductsComponent implements OnInit {
   fetchingItems: any[] = []; // For fetchingProduct
   items: MenuItem[] | undefined
   home: MenuItem | undefined;
-  // product = {
-  //   id: '',
-  //   name: '',
-  //   unitPrice: '',
-  //   commonStatus: 'ACTIVE',
-  //   description: '',
-  //   category: '',
-  //   image: ''
-  // };
 
   productForm: FormGroup;
 
   // category dropdown
-  categories: string[] = ['Electronics', 'Books', 'Clothing', 'Home Appliances'];
+  categories: string[] = ['Electronics', 'Books', 'Foods', 'Stationeries'];
 
   constructor(
     private giftItemsService: GiftItemsService,
@@ -41,16 +32,16 @@ export class ProductsComponent implements OnInit {
       category: ['', Validators.required],
       image: ['', Validators.required]
     });
-   }
+  }
 
   ngOnInit(): void {
     this.fetchAllItems();
     this.items = [
-      { label: 'GiftWave' }, 
-      { label: 'Admin' }, 
+      { label: 'GiftWave' },
+      { label: 'Admin' },
       { label: 'GiftItems' }
-  ];
-  this.home = { icon: 'pi pi-slack', routerLink: '/admin/dash' };
+    ];
+    this.home = { icon: 'pi pi-slack', routerLink: '/admin/dash' };
   }
 
   onFileSelected(event: any) {
@@ -62,26 +53,6 @@ export class ProductsComponent implements OnInit {
     };
   }
 
-  // addProduct() {
-  //   console.log(this.product);
-  //   if (this.product.category == '' ||
-  //     this.product.description == '' ||
-  //     this.product.name == '' ||
-  //     this.product.image == '' ||
-  //     this.product.unitPrice == ''
-  //   ) {
-  //     this.showError();
-  //     alert("Empty Field");
-  //   } else {
-  //     this.giftItemsService.addGiftItem(this.product).subscribe(response => {
-  //       console.log('Product added:', response);
-  //       this.show();
-  //       this.fetchAllItems();
-  //       console.log(this.product);
-  //     });
-
-  //   }
-  // }
   addProduct() {
     // alert("hello");
     // console.log("jhiu"+this.productForm.value);
@@ -108,8 +79,26 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  deleteProduct(pId: any) {
+    const product = {
+      id: pId,
+      commonStatus: "DELETED"
+    }
+    this.giftItemsService.deleteGiftItem(product).subscribe(response => {
+      console.log(response);
+      this.detete();
+      this.fetchAllItems();
+    });
+
+  }
+  toggleDescription(item: any) {
+    item.showFullDescription = !item.showFullDescription;
+  }
   show() {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product added Successfully!' });
+  }
+  detete() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product deletion Successfully!' });
   }
   showError() {
     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Product added Unsuccessfully!' });

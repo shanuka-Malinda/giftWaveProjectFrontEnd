@@ -21,7 +21,7 @@
 
     <div style="display: flex;align-items: center;">
         <p-button (onClick)="showDialog()" label="Box" icon="pi pi-gift" class="box" badge="2" outlined="true"
-        badgeClass="p-badge-contrast"  />
+            badgeClass="p-badge-contrast" />
         <p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
             [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
             <p class="mb-5">
@@ -45,9 +45,10 @@
 
             <p-button label="Buy & Send" icon="pi pi-send" outlined="true" class="buy-button" />
         </p-dialog>
-        
+
     </div>
 </div>
+
 
 
 
@@ -56,149 +57,31 @@
 <div class="store">
 
 
-    <div class="product-card">
+    <div class="product-card" *ngFor="let item of fetchingItems">
 
         <div class="product-image">
-            <img src="/assets/box.png" alt="Product Image" />
+            <img [src]="item.image || '/assets/box.png'" alt="Product Image" />
         </div>
         <div class="product-info">
-            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
+            <h2 class="product-name">{{ item.name }}</h2>
+            <!-- <p class="product-description">
+                {{ item.description }}
+            </p> -->
+
             <p class="product-description">
-                Lorem ipsum is simply dummy text of the printing and typesetting industry.
-            </p>
-            <div class="product-price">$09.00</div>
+                <span *ngIf="!item.showFullDescription">
+                    {{ item.description | slice:0:100 }}... <!-- Display the first 100 characters -->
+                    <a href="javascript:void(0);" (click)="toggleDescription(item)">Show more</a>
+                </span>
+                <span *ngIf="item.showFullDescription">
+                    {{ item.description }}
+                    <a href="javascript:void(0);" (click)="toggleDescription(item)">Show less</a>
+                </span>
+
+
+            <div class="product-price">{{ item.unitPrice }} LKR</div>
         </div>
         <button class="add-to-cart-button">Add To Gift Box</button>
     </div>
-    <div class="product-card">
-
-        <div class="product-image">
-            <img src="/assets/box.png" alt="Product Image" />
-        </div>
-        <div class="product-info">
-            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
-            <p class="product-description">
-                Lorem ipsum is simply dummy text of the printing and typesetting industry.
-            </p>
-            <div class="product-price">$09.00</div>
-        </div>
-        <button class="add-to-cart-button">Add To Gift Box</button>
-    </div>
-    <div class="product-card">
-
-        <div class="product-image">
-            <img src="/assets/box.png" alt="Product Image" />
-        </div>
-        <div class="product-info">
-            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
-            <p class="product-description">
-                Lorem ipsum is simply dummy text of the printing and typesetting industry.
-            </p>
-            <div class="product-price">$09.00</div>
-        </div>
-        <button class="add-to-cart-button">Add To Gift Box</button>
-    </div>
-    <div class="product-card">
-
-        <div class="product-image">
-            <img src="/assets/box.png" alt="Product Image" />
-        </div>
-        <div class="product-info">
-            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
-            <p class="product-description">
-                Lorem ipsum is simply dummy text of the printing and typesetting industry.
-            </p>
-            <div class="product-price">$09.00</div>
-        </div>
-        <button class="add-to-cart-button">Add To Gift Box</button>
-    </div>
-    <div class="product-card">
-
-        <div class="product-image">
-            <img src="/assets/box.png" alt="Product Image" />
-        </div>
-        <div class="product-info">
-            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
-            <p class="product-description">
-                Lorem ipsum is simply dummy text of the printing and typesetting industry.
-            </p>
-            <div class="product-price">$09.00</div>
-        </div>
-        <button class="add-to-cart-button">Add To Gift Box</button>
-    </div>
-    <div class="product-card">
-
-        <div class="product-image">
-            <img src="/assets/box.png" alt="Product Image" />
-        </div>
-        <div class="product-info">
-            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
-            <p class="product-description">
-                Lorem ipsum is simply dummy text of the printing and typesetting industry.
-            </p>
-            <div class="product-price">$09.00</div>
-        </div>
-        <button class="add-to-cart-button">Add To Gift Box</button>
-    </div>
-    <div class="product-card">
-
-        <div class="product-image">
-            <img src="/assets/box.png" alt="Product Image" />
-        </div>
-        <div class="product-info">
-            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
-            <p class="product-description">
-                Lorem ipsum is simply dummy text of the printing and typesetting industry.
-            </p>
-            <div class="product-price">$09.00</div>
-        </div>
-        <button class="add-to-cart-button">Add To Gift Box</button>
-    </div>
-    <div class="product-card">
-
-        <div class="product-image">
-            <img src="/assets/box.png" alt="Product Image" />
-        </div>
-        <div class="product-info">
-            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
-            <p class="product-description">
-                Lorem ipsum is simply dummy text of the printing and typesetting industry.
-            </p>
-            <div class="product-price">$09.00</div>
-        </div>
-        <button class="add-to-cart-button">Add To Gift Box</button>
-    </div>
-    <div class="product-card">
-
-        <div class="product-image">
-            <img src="/assets/box.png" alt="Product Image" />
-        </div>
-        <div class="product-info">
-            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
-            <p class="product-description">
-                Lorem ipsum is simply dummy text of the printing and typesetting industry.
-            </p>
-            <div class="product-price">$09.00</div>
-        </div>
-        <button class="add-to-cart-button">Add To Gift Box</button>
-    </div>
-    <div class="product-card">
-
-        <div class="product-image">
-            <img src="/assets/box.png" alt="Product Image" />
-        </div>
-        <div class="product-info">
-            <h2 class="product-name">ADDIDAS GAZE ZX</h2>
-            <p class="product-description">
-                Lorem ipsum is simply dummy text of the printing and typesetting industry.
-            </p>
-            <div class="product-price">$09.00</div>
-        </div>
-        <button class="add-to-cart-button">Add To Gift Box</button>
-    </div>
-
-
-
-
 
 </div>
