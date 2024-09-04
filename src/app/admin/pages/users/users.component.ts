@@ -17,7 +17,9 @@ export class UsersComponent implements OnInit {
           { label: 'Admin' }, 
           { label: 'User' }
       ];
-
+    
       this.home = { icon: 'pi pi-slack', routerLink: '/admin/dash' };
+      console.log("shanuka")
   }
+  
 }

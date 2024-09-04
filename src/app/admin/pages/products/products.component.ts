@@ -1,64 +1,117 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { Product } from '../../../dto/product';
-import { ProductService } from '../../../services/product.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MenuItem, MessageService } from 'primeng/api';
+import { GiftItemsService } from '../../../services/gift-items.service';
 
-
-
-
-interface City {
-  name: string;
-  code: string;
-}
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  products!: Product[];
+  fetchingItems: any[] = []; // For fetchingProduct
+  items: MenuItem[] | undefined
+  home: MenuItem | undefined;
+  // product = {
+  //   id: '',
+  //   name: '',
+  //   unitPrice: '',
+  //   commonStatus: 'ACTIVE',
+  //   description: '',
+  //   category: '',
+  //   image: ''
+  // };
+
+  productForm: FormGroup;
 
   // category dropdown
-  categories: City[] | undefined;
-  selectedCategory: City | undefined;
-
-  //----upload image  
-  imagePreviews: string[] = [];
-
+  categories: string[] = ['Electronics', 'Books', 'Clothing', 'Home Appliances'];
 
   constructor(
-    private productService: ProductService,
-    private messageService: MessageService
-  ) { }
-
-  ngOnInit() {
-    this.productService.getProductsMini().then((data) => {
-      this.products = data;
+    private giftItemsService: GiftItemsService,
+    private messageService: MessageService,
+    private fb: FormBuilder,
+  ) {
+    this.productForm = this.fb.group({
+      id: [''],
+      name: ['', Validators.required],
+      unitPrice: ['', Validators.required],
+      commonStatus: ['ACTIVE'],
+      description: ['', Validators.required],
+      category: ['', Validators.required],
+      image: ['', Validators.required]
     });
+   }
 
-    this.categories = [
-      { name: 'Foods', code: 'NY' },
-      { name: 'Electronic', code: 'RM' },
-      { name: 'Other', code: 'LDN' },
-    ];
+  ngOnInit(): void {
+    this.fetchAllItems();
+    this.items = [
+      { label: 'GiftWave' }, 
+      { label: 'Admin' }, 
+      { label: 'GiftItems' }
+  ];
+  this.home = { icon: 'pi pi-slack', routerLink: '/admin/dash' };
   }
 
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files) {
-      const files = Array.from(input.files);
-      this.imagePreviews = files.map(file => URL.createObjectURL(file));
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.productForm.patchValue({ image: reader.result?.toString().split(',')[1] || '' });
+    };
+  }
+
+  // addProduct() {
+  //   console.log(this.product);
+  //   if (this.product.category == '' ||
+  //     this.product.description == '' ||
+  //     this.product.name == '' ||
+  //     this.product.image == '' ||
+  //     this.product.unitPrice == ''
+  //   ) {
+  //     this.showError();
+  //     alert("Empty Field");
+  //   } else {
+  //     this.giftItemsService.addGiftItem(this.product).subscribe(response => {
+  //       console.log('Product added:', response);
+  //       this.show();
+  //       this.fetchAllItems();
+  //       console.log(this.product);
+  //     });
+
+  //   }
+  // }
+  addProduct() {
+    // alert("hello");
+    // console.log("jhiu"+this.productForm.value);
+    if (this.productForm.invalid) {
+      this.showError();
+      return;
     }
+
+    const product = this.productForm.value;
+
+    this.giftItemsService.addGiftItem(product).subscribe(response => {
+      console.log('Product added:', response);
+      this.show();
+      this.fetchAllItems();
+    });
+  }
+  fetchAllItems(): void {
+    this.giftItemsService.getAllGiftItems().subscribe(data => {
+      // Assuming data.payload contains the array of products
+      this.fetchingItems = data.payload.map((item: any) => ({
+        ...item,
+        image: item.image ? 'data:image/png;base64,' + item.image : '' // Convert base64 to image URL
+      }));
+    });
   }
 
-  removeImage(imageUrl: string) {
-    this.imagePreviews = this.imagePreviews.filter(image => image !== imageUrl);
+  show() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product added Successfully!' });
   }
-
-  uploadImages() {
-    // Implement your upload logic here
-    console.log('Upload images:', this.imagePreviews);
+  showError() {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Product added Unsuccessfully!' });
   }
-
-
 }

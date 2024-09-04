@@ -14,14 +14,14 @@ export class GiftsComponent implements OnInit {
 
   categories: any[] | undefined;
   selectedCategories: string | any;
-
+ l:string|any;
   constructor() {
     this.categories = [
       { name: 'Foods', code: 'fd' }
     ]
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+     this.l="dssd";
   }
 
   visible: boolean = false;

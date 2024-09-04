@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterLinkActive } from '@angular/router';
@@ -30,6 +28,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { PanelModule } from 'primeng/panel';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { RippleModule } from 'primeng/ripple';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
@@ -38,6 +37,8 @@ import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.componen
 import { DashComponent } from './admin/pages/dash/dash.component';
 import { ProductsComponent } from './admin/pages/products/products.component';
 import { UsersComponent } from './admin/pages/users/users.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
@@ -72,6 +73,7 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     
   ],
   imports: [
+    RippleModule,
     ProgressBarModule,
     InputTextareaModule,
     FloatLabelModule,
@@ -102,7 +104,8 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
   ],
   providers: [
     provideClientHydration(),
-    MessageService
+    MessageService,
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

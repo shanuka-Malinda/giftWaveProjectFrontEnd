@@ -1,86 +1,90 @@
+<div class="path">
+    <p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+</div>
+
+<p-toast />
 <div class="product-form">
-    <p-panel header="Add New Product" [toggleable]="true">
-        <form>
-            <p-iconField iconPosition="left">
-                <p-inputIcon styleClass="pi pi-info-circle" />
-                <input type="text" pInputText placeholder="Product Name" />
-            </p-iconField>
-            <p-iconField iconPosition="left">
-                <p-inputIcon styleClass="pi pi-align-justify" />
-                <input type="text" pInputText placeholder="More Details About Product" />
-            </p-iconField>
-            <p-iconField iconPosition="left">
-                <p-inputIcon styleClass="pi pi-dollar" />
-                <input type="number" pInputText placeholder="Product Price" />
-            </p-iconField>
-            <div class="dropdown">
-                <p-dropdown [ngModelOptions]="{standalone: true}" [options]="categories" [(ngModel)]="selectedCategory"
-                    variant="filled" optionLabel="name"
-                    [style]="{'height':'50px','width':'275px','display':'flex','align-items':'center','margin':'5px 0 0 5px'}">
-                    placeholder="Select a City">
-
-                </p-dropdown>
+    <form [formGroup]="productForm">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" formControlName="name" required>
+            <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched">
+                Name is required.
             </div>
-            <div class="file-upload-container">
-                <input type="file" (change)="onFileSelected($event)" accept="image/*" multiple />
-
-                <div class="preview-container" *ngIf="imagePreviews.length > 0">
-                    <h5>Selected Images</h5>
-                    <ul>
-                        <li *ngFor="let image of imagePreviews">
-                            <img [src]="image" alt="Image Preview" />
-                            <button (click)="removeImage(image)">Remove</button>
-                        </li>
-                    </ul>
-                </div>
-
-                <button (click)="uploadImages()" [disabled]="!imagePreviews.length">Upload</button>
+        </div>
+        <div class="form-group">
+            <label for="unitPrice">Price</label>
+            <input type="text" id="unitPrice" formControlName="unitPrice" required>
+            <div *ngIf="productForm.get('unitPrice')?.invalid && productForm.get('unitPrice')?.touched">
+                Price is required.
             </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" formControlName="description" required>
+            <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched">
+                Description is required.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" formControlName="category" required>
+                <option value="" disabled selected>Select a category</option>
+                <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+            <div *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched">
+                Category is required.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" id="image" (change)="onFileSelected($event)" required>
+            <div *ngIf="productForm.get('image')?.invalid && productForm.get('image')?.touched">
+                Image is required.
+            </div>
+        </div>
+        <button (click)="addProduct()" [disabled]="productForm.invalid">Add Product</button>
+    </form>
 
-
-
-        </form>
-    </p-panel>
 </div>
 
 
 <div class="card">
-    <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}">
-        <ng-template pTemplate="caption">
-            <div class="cap">
-                <h3>Products</h3>
-                <p-button icon="pi pi-refresh" />
-            </div>
-        </ng-template>
-        <ng-template pTemplate="header">
+    <div class="cap">
+        <h1>Product List</h1>
+        <p-button icon="pi pi-refresh" (onClick)="show()" />
+    </div>
+    <table>
+
+        <thead>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
+                <th>Description</th>
                 <th>Image</th>
                 <th>Price</th>
                 <th>Category</th>
                 <th>Action</th>
-                <!-- <th>Status</th> -->
             </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-product>
-            <tr>
-                <td>{{product.name}}</td>
-                <td><img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
-                        [alt]="product.name" width="100" class="shadow-4" /></td>
-                <td>{{product.price | currency:'USD'}}</td>
-                <td>{{product.category}}</td>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of fetchingItems">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td><img [src]="item.image" [alt]="item.image" width="100" class="shadow-4" /></td>
+                <td>&nbsp;{{item.unitPrice | currency:'LKR':'code'}}</td>
+                <td>{{item.category}}</td>
                 <td>
                     <p-button icon="pi pi-file-edit" label="Edit" [text]="true" [raised]="true" />
                     <p-button icon="pi pi-trash" label="Remove" [text]="true" [raised]="true" severity="danger" />
                 </td>
-                <!-- <td><p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false" /></td> -->
-                <!-- <td><p-tag [value]="product.inventoryStatus" [severity]="getSeverity(product.inventoryStatus)" /></td> -->
             </tr>
-        </ng-template>
-        <ng-template pTemplate="summary">
-            <div class="flex align-items-center justify-content-between">
-                In total there are {{products ? products.length : 0 }} products.
-            </div>
-        </ng-template>
-    </p-table>
+        </tbody>
+    </table>
+
+
 </div>
+
+
+<!-- <p>{{ fetchingItems | json }}</p> -->
