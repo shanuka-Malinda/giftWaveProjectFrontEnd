@@ -29,9 +29,27 @@ $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
     }
 }
 
-// .box{
-
-// }
+//Gift Box style----------------
+.giftBox-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+    box-shadow: 0 4px 8px $product-shadow-color;
+    border-radius: 8px;
+    padding: 10px;
+    .gift-info{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        // background-color:gold;
+        min-width:400px;
+        .gift-price{
+            color: #033f8d;
+            font-weight: bold;
+        }
+    }
+}
 .store {
     display: flex;
     flex-wrap: wrap;

@@ -1,3 +1,4 @@
+<p-toast />
 <div class="tool">
     <div class="card flex justify-content-center">
         <p-dropdown [options]="categories" [(ngModel)]="selectedCategories" optionLabel="name" [filter]="true"
@@ -20,28 +21,21 @@
     </div>
 
     <div style="display: flex;align-items: center;">
-        <p-button (onClick)=" getGiftBoxItems()" label="Box" icon="pi pi-gift" class="box" badge="{{giftboxCount}}" outlined="true"
-            badgeClass="p-badge-contrast" />
-        <p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
+        <p-button (onClick)=" getGiftBoxItems()" label="Box" icon="pi pi-gift" class="box" badge="{{giftboxCount}}"
+            outlined="true" badgeClass="p-badge-contrast" />
+        <p-dialog header="Gifts Box" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
             [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
-            <p class="mb-5">
-                Lorem ipsum dolor sit amet...
-            </p>
-            <p class="mb-5">
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
-            </p>
-            <p class="mb-5">
-                At vero eos et accusamus et iusto odio dignissimos...
-            </p>
-            <p class="mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit...
-            </p>
-            <p class="mb-5">
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
-            </p>
-            <p>
-                At vero eos et accusamus et iusto odio dignissimos...
-            </p>
+
+            <div *ngFor="let item of giftBoxItemsDetails" class="giftBox-card">
+                <div class="gift-image">
+                    <img [src]="item.image" alt="{{ item.name }}"  height="70px"/>
+                </div>
+                <div class="gift-info">
+                    <h4 class="gift-name"> [#{{ item.id }}] &nbsp; {{ item.name }}</h4>
+                    <div class="gift-price">{{ item.unitPrice }} LKR</div>
+                </div>
+                <p-button icon="pi pi-times" [rounded]="true" severity="danger" [outlined]="true" (onClick)="removeItemFromArray(item.id)" />
+            </div>
 
             <p-button label="Buy & Send" icon="pi pi-send" outlined="true" class="buy-button" />
         </p-dialog>

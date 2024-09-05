@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { GiftItemsService } from '../../../services/gift-items.service';
 interface Country {
   name: string;
@@ -16,14 +17,14 @@ export class GiftsComponent implements OnInit {
   fetchingItems: any[] = [];
 
   //GiftBox
-  giftBoxItems:number[]=[];
-  giftBoxItemsDetails:any[]=[];
-  giftboxCount:number=0;
+  giftBoxItems: number[] = [];
+  giftBoxItemsDetails: any[] = [];
+  giftboxCount: number = 0;
 
   categories: any[] | undefined;
   selectedCategories: string | any;
 
-  constructor(private giftItemsService: GiftItemsService) {
+  constructor(private giftItemsService: GiftItemsService, private messageService: MessageService) {
     this.categories = [
       { name: 'Foods', code: 'fd' }
     ]
@@ -31,14 +32,13 @@ export class GiftsComponent implements OnInit {
   ngOnInit(): void {
     console.log("hello");
     this.fetchAllItems();
-    
+
   }
 
   visible: boolean = false;
 
   showDialog() {
     this.visible = true;
-    
   }
 
 
@@ -46,34 +46,49 @@ export class GiftsComponent implements OnInit {
     item.showFullDescription = !item.showFullDescription;
   }
 
-  addToGiftBox(id:number){
-   this.giftBoxItems.push(id);
-   this.giftboxCount=this.giftBoxItems.length;
+  addToGiftBox(id: number) {  //Add items for giftBox
+    if (!this.giftBoxItems.includes(id)) {
+      this.giftBoxItems.push(id);
+      this.giftboxCount = this.giftBoxItems.length;
+      this.giftAddedMsg();
+      console.log(`Item ${id} added. Total items: ${this.giftboxCount}`);
+    } else {
+      this.giftAlreadyAddedMsg();
+    }
   }
-  getGiftBoxItems():void{
-    console.log("ffff"+this.giftBoxItems);
-    this.giftItemsService.getAllGiftBoxItems(this.giftBoxItems).subscribe((data:any)=>{
+
+  removeItemFromArray(item: number): void {
+    const index = this.giftBoxItems.indexOf(item);
+    
+    if (index !== -1) {
+        // Item exists in the array, so remove it
+        this.giftBoxItems.splice(index, 1);
+        this.getGiftBoxItems();
+        this.giftboxCount = this.giftBoxItems.length;
+        console.log(`Item ${item} removed. Updated array:`, this.giftBoxItems);
+    } else {
+        console.log(`Item ${item} not found in the array.`);
+    }
+}
+  getGiftBoxItems(): void { //Get GiftBox items details
+    console.log("ffff" + this.giftBoxItems);
+    this.giftItemsService.getAllGiftBoxItems(this.giftBoxItems).subscribe((data: any) => {
       if (data.status) {
-        this.giftBoxItemsDetails = data.payload.map((item: any) => ({
-        ...item,
-        image: item.image ? 'data:image/png;base64,' + item.image : ''
-      }));
-        // this.giftBoxItemsDetails = data.payload[0];   
-         console.log(this.giftBoxItemsDetails);
+        this.giftBoxItemsDetails = data.payload[0].map((item: any) => ({
+          ...item,
+          image: item.image ? 'data:image/png;base64,' + item.image : ''
+        }));
+        // this.giftBoxItemsDetails = data.payload[0];
+        console.log(this.giftBoxItemsDetails);
       } else {
         console.error(data.errorMessages);
       }
     },
-    (error) => {
-      console.error('Error fetching items:', error);
- 
-      // this.giftBoxItemsDetails = data.payload.map((item: any) => ({
-      //   ...item,
-      //   image: item.image ? 'data:image/png;base64,' + item.image : '' // Convert base64 to image URL
-      // }));
-    });
-   // console.log("GiftBox"+this.giftBoxItemsDetails);
-   // console.log("Working");
+      (error) => {
+        console.error('Error fetching items:', error);
+      });
+
+      this.showDialog();
   }
 
   fetchAllItems(): void {
@@ -103,9 +118,13 @@ export class GiftsComponent implements OnInit {
   }
 
 
+  giftAlreadyAddedMsg() {
+    this.messageService.add({ severity: 'info', summary: 'info', detail: 'This item is already added in gift box!' });
+  }
 
-
-
+  giftAddedMsg() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Item successfully added to gift Box!' });
+  }
 }
 
 
