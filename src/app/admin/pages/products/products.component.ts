@@ -39,7 +39,7 @@ export class ProductsComponent implements OnInit {
     this.items = [
       { label: 'GiftWave' },
       { label: 'Admin' },
-      { label: 'GiftItems' }
+      { label: 'Products' }
     ];
     this.home = { icon: 'pi pi-slack', routerLink: '/admin/dash' };
   }

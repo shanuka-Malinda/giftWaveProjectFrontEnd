@@ -20,4 +20,7 @@ export class GiftItemsService {
   deleteGiftItem(product: any): Observable<any> {
     return this.http.put<any>(this.api+"/delete", product);
   }
+  getAllGiftBoxItems(product: number[]): Observable<any> {
+    return this.http.post<any>(this.api+"/by-ids", product);
+  }
 }

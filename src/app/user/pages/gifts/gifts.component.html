@@ -20,7 +20,7 @@
     </div>
 
     <div style="display: flex;align-items: center;">
-        <p-button (onClick)="showDialog()" label="Box" icon="pi pi-gift" class="box" badge="2" outlined="true"
+        <p-button (onClick)=" getGiftBoxItems()" label="Box" icon="pi pi-gift" class="box" badge="{{giftboxCount}}" outlined="true"
             badgeClass="p-badge-contrast" />
         <p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
             [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
@@ -81,7 +81,7 @@
 
             <div class="product-price">{{ item.unitPrice }} LKR</div>
         </div>
-        <button class="add-to-cart-button">Add To Gift Box</button>
+        <button class="add-to-cart-button" (click)="addToGiftBox(item.id)">Add To Gift Box</button>
     </div>
 
 </div>

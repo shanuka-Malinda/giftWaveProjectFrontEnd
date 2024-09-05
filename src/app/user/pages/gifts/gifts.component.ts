@@ -15,6 +15,11 @@ export class GiftsComponent implements OnInit {
 
   fetchingItems: any[] = [];
 
+  //GiftBox
+  giftBoxItems:number[]=[];
+  giftBoxItemsDetails:any[]=[];
+  giftboxCount:number=0;
+
   categories: any[] | undefined;
   selectedCategories: string | any;
 
@@ -26,12 +31,14 @@ export class GiftsComponent implements OnInit {
   ngOnInit(): void {
     console.log("hello");
     this.fetchAllItems();
+    
   }
 
   visible: boolean = false;
 
   showDialog() {
     this.visible = true;
+    
   }
 
 
@@ -39,6 +46,35 @@ export class GiftsComponent implements OnInit {
     item.showFullDescription = !item.showFullDescription;
   }
 
+  addToGiftBox(id:number){
+   this.giftBoxItems.push(id);
+   this.giftboxCount=this.giftBoxItems.length;
+  }
+  getGiftBoxItems():void{
+    console.log("ffff"+this.giftBoxItems);
+    this.giftItemsService.getAllGiftBoxItems(this.giftBoxItems).subscribe((data:any)=>{
+      if (data.status) {
+        this.giftBoxItemsDetails = data.payload.map((item: any) => ({
+        ...item,
+        image: item.image ? 'data:image/png;base64,' + item.image : ''
+      }));
+        // this.giftBoxItemsDetails = data.payload[0];   
+         console.log(this.giftBoxItemsDetails);
+      } else {
+        console.error(data.errorMessages);
+      }
+    },
+    (error) => {
+      console.error('Error fetching items:', error);
+ 
+      // this.giftBoxItemsDetails = data.payload.map((item: any) => ({
+      //   ...item,
+      //   image: item.image ? 'data:image/png;base64,' + item.image : '' // Convert base64 to image URL
+      // }));
+    });
+   // console.log("GiftBox"+this.giftBoxItemsDetails);
+   // console.log("Working");
+  }
 
   fetchAllItems(): void {
     this.giftItemsService.getAllGiftItems().subscribe(data => {
