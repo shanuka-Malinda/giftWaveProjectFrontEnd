@@ -53,9 +53,11 @@
 
 
         <div class="user">
-            <div class="image"></div>
+            <div class="image">
+                <img [src]="imageUrl" *ngIf="imageUrl" alt="User">
+            </div>
             <div class="card-info">
-                <span>George Johnson</span>
+                <span>{{username}}</span>
             </div>
             <!-- <a href="#" class="button">Folow</a> -->
         </div>
@@ -63,6 +65,9 @@
 
         <div class="giftlist">
             <h4>My Gift list</h4>
+          
+            <p>{{email}}</p>
+             
             <div class="card flex justify-content-center">
                 <p-accordion class="w-full" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
                     <p-accordionTab>

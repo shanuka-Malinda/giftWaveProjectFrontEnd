@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from '../../../services/auth.service';
 
 
 @Component({
@@ -9,9 +11,12 @@ import { MenuItem } from 'primeng/api';
 })
 export class NavBarComponent implements OnInit {
   menuActive: boolean = false;
-  username: string = "user";
   sidebarVisible: boolean = false;
 
+  //get user details for variable
+  username: any = "Username";
+  imageUrl: any="";
+  email:any="";
 
   toggleMenu() {
     this.menuActive = !this.menuActive;
@@ -19,15 +24,25 @@ export class NavBarComponent implements OnInit {
 
   items: MenuItem[] | undefined;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,private authService: AuthService, private router: Router){
+    if (typeof window !== 'undefined') {
+      this.username = localStorage.getItem('username');
+      this.imageUrl = `data:image/png;base64,${localStorage.getItem('imgUrl')}`;
+      this.email = localStorage.getItem('email');
+    }
+  }
   ngOnInit() {
+
+    
+
     this.items = [
       {
-        label: this.username,
+        label:this.username,
         items: [
           {
             label: 'Login',
-            icon: 'pi pi-sign-in',
-            routerLink: '/login'
+            icon:'pi pi-sign-in',
+            routerLink:'/login',
           },
           {
             label: 'Register',
@@ -44,6 +59,17 @@ export class NavBarComponent implements OnInit {
         ]
       }
     ];
+
+  
+ 
+  }
+
+
+  logout() {
+    // Perform logout logic here
+   // this.authService.logout();
+    localStorage.clear();
+    this.router.navigate(['/home']); // Redirect to login page
   }
   
 }

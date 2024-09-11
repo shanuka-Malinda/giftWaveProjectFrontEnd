@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterLinkActive } from '@angular/router';
@@ -39,6 +39,7 @@ import { ProductsComponent } from './admin/pages/products/products.component';
 import { UsersComponent } from './admin/pages/users/users.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthInterceptorService } from './authentication/auth-interceptor.service';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
@@ -105,7 +106,9 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
   providers: [
     provideClientHydration(),
     MessageService,
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    
   ],
   bootstrap: [AppComponent]
 })
