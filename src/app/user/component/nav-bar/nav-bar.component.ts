@@ -13,6 +13,8 @@ export class NavBarComponent implements OnInit {
   menuActive: boolean = false;
   sidebarVisible: boolean = false;
 
+  isLoggedIn: boolean = false;
+  userImageUrl: string = '';
   //get user details for variable
   username: any = "Username";
   imageUrl: any="";
@@ -33,7 +35,12 @@ export class NavBarComponent implements OnInit {
   }
   ngOnInit() {
 
-    
+    if (this.username) {
+      this.isLoggedIn = true;
+      this.userImageUrl = this.imageUrl; // Set the image URL
+    } else {
+      this.isLoggedIn = false;
+    }
 
     this.items = [
       {
@@ -43,6 +50,13 @@ export class NavBarComponent implements OnInit {
             label: 'Login',
             icon:'pi pi-sign-in',
             routerLink:'/login',
+          },
+          {
+            label: 'Logout',
+            icon:'pi pi-sign-in',
+            command:()=>{
+              this.logout();
+            }
           },
           {
             label: 'Register',
@@ -69,7 +83,9 @@ export class NavBarComponent implements OnInit {
     // Perform logout logic here
    // this.authService.logout();
     localStorage.clear();
+    window.location.reload()
     this.router.navigate(['/home']); // Redirect to login page
+    this.isLoggedIn = false;
   }
   
 }

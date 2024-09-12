@@ -38,8 +38,21 @@
 
     <div class="navbar-actions">
         <p-menu #menu [model]="items" [popup]="true"></p-menu>
-        <p-button (onClick)="menu.toggle($event)" severity="info" [outlined]="true" [rounded]="true"
-            icon="pi pi-user"></p-button>
+        <p-button 
+        (onClick)="menu.toggle($event)" 
+        severity="info" 
+        [outlined]="true" 
+        [rounded]="true" 
+        icon="pi pi-user" 
+        *ngIf="!isLoggedIn">
+      </p-button>
+      
+      <p-button 
+        (onClick)="menu.toggle($event)" [rounded]="true" [text]="true"    
+        *ngIf="isLoggedIn">
+        <img [src]="userImageUrl" alt="User Image" width="24" height="24" class="user-icon-image"/>
+      </p-button>
+      
         <button class="navbar-toggler" (click)="toggleMenu()">&#9776;</button>
     </div>
 </nav>

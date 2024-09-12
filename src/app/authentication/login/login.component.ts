@@ -26,12 +26,17 @@ export class LoginComponent {
         localStorage.setItem('username', data.user.userName);
         localStorage.setItem('imgUrl', data.user.image);
         localStorage.setItem('email', data.user.email);
-        localStorage.setItem('role', data.user.role.roleName);
+        localStorage.setItem('role', data.user.role[0].roleName);
+        let role = localStorage.getItem('role');
+        console.log("Role is "+role);
         console.log('User:', data.user); // You can access the user details here
-        if(localStorage.getItem('role')=='Admin'){
-          this.router.navigate(['/admin/dash']);  // Navigate to a secure page
+
+        if(role=="Admin"){
+          this.router.navigate(['/admin/dash']);
+        }else{
+        this.router.navigate(['/home']);
         }
-        this.router.navigate(['/home']);  // Navigate to a secure page
+
       },
       error: (err) => {
         this.errorMessage = 'Invalid credentials!';

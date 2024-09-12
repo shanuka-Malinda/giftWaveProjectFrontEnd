@@ -12,7 +12,7 @@ $hover-color: #105583;
 }
 
 .navbar {
-    box-shadow: 1px 1px 20px 1px darkgray;
+   // box-shadow: 1px 1px 20px 1px darkgray;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,6 +21,7 @@ $hover-color: #105583;
     color: $secondary-color;
     border-radius: 8px;
     margin: 0;
+
     .navbar-brand {
         display: flex;
         align-items: center;
@@ -92,6 +93,14 @@ $hover-color: #105583;
     .navbar-actions {
         display: flex;
         align-items: center;
+
+        .user-icon-image {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: 0;
+            padding: 0;
+        }
 
         .navbar-toggler {
             display: none;
@@ -173,12 +182,13 @@ $hover-color: #105583;
 .image {
     width: 90px;
     height: 90px;
-    background-color:rgba(11, 144, 226, 0.568);
+    background-color: rgba(11, 144, 226, 0.568);
     border-radius: 50%;
     border: 4px solid #fefefe;
     margin-top: 30px;
     transition: all 0.5s ease;
-    img{
+
+    img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
@@ -234,6 +244,6 @@ $hover-color: #105583;
 }
 
 //----gift-list-style
-.giftlist{
+.giftlist {
     margin: 5px;
 }
