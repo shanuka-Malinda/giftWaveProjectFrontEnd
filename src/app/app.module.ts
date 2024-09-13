@@ -51,6 +51,7 @@ import { GiftsComponent } from './user/pages/gifts/gifts.component';
 import { HomeComponent } from './user/pages/home/home.component';
 import { TermsAndServicesComponent } from './user/pages/terms-and-services/terms-and-services.component';
 import { UserLayoutComponent } from './user/user-layout/user-layout.component';
+import { CheckOutComponent } from './user/pages/check-out/check-out.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     DashComponent,
     ProductsComponent,
     UsersComponent,
+    CheckOutComponent,
     
   ],
   imports: [

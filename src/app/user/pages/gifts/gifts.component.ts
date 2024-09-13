@@ -24,15 +24,17 @@ export class GiftsComponent implements OnInit {
   categories: any[] | undefined;
   selectedCategories: string | any;
 
+  //user detils
+
+
   constructor(private giftItemsService: GiftItemsService, private messageService: MessageService) {
     this.categories = [
       { name: 'Foods', code: 'fd' }
     ]
   }
   ngOnInit(): void {
-    console.log("hello");
-    this.fetchAllItems();
-
+   this.fetchAllItems();
+    
   }
 
   visible: boolean = false;
@@ -50,6 +52,7 @@ export class GiftsComponent implements OnInit {
     if (!this.giftBoxItems.includes(id)) {
       this.giftBoxItems.push(id);
       this.giftboxCount = this.giftBoxItems.length;
+      this.clearMsg();
       this.giftAddedMsg();
       console.log(`Item ${id} added. Total items: ${this.giftboxCount}`);
     } else {
@@ -117,7 +120,9 @@ export class GiftsComponent implements OnInit {
     return items;
   }
 
-
+  clearMsg(){
+    this.messageService.clear();
+  }
   giftAlreadyAddedMsg() {
     this.messageService.add({ severity: 'info', summary: 'info', detail: 'This item is already added in gift box!' });
   }

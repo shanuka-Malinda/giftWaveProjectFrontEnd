@@ -7,6 +7,7 @@ import { UsersComponent } from './admin/pages/users/users.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { CheckOutComponent } from './user/pages/check-out/check-out.component';
 import { GiftsComponent } from './user/pages/gifts/gifts.component';
 import { HomeComponent } from './user/pages/home/home.component';
 import { TermsAndServicesComponent } from './user/pages/terms-and-services/terms-and-services.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: "", redirectTo: 'home', pathMatch: 'full' },
       { path: "home", component: HomeComponent },
       { path: "gifts", component: GiftsComponent },
-      { path: "terms", component: TermsAndServicesComponent }
+      { path: "terms", component: TermsAndServicesComponent },
+      {path:"check-out", component:CheckOutComponent}
     ]
   },
   {
