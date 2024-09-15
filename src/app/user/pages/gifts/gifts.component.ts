@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { GiftItemsService } from '../../../services/gift-items.service';
+import { SharedDataService } from '../../../services/shared-data.service';
 interface Country {
   name: string;
   code: string;
@@ -15,7 +17,7 @@ export class GiftsComponent implements OnInit {
   selectedGifts!: Country[];
 
   fetchingItems: any[] = [];
-
+  visible: boolean = false;
   //GiftBox
   giftBoxItems: number[] = [];
   giftBoxItemsDetails: any[] = [];
@@ -27,18 +29,30 @@ export class GiftsComponent implements OnInit {
   //user detils
 
 
-  constructor(private giftItemsService: GiftItemsService, private messageService: MessageService) {
+  constructor(
+    private giftItemsService: GiftItemsService,
+    private messageService: MessageService,
+    private sharedDataService: SharedDataService,
+    private router: Router,
+  ) {
     this.categories = [
       { name: 'Foods', code: 'fd' }
     ]
   }
+
   ngOnInit(): void {
-   this.fetchAllItems();
-    
+    this.fetchAllItems();
+
   }
 
-  visible: boolean = false;
 
+
+
+  sendArray() {
+    localStorage.setItem('item', JSON.stringify(this.giftBoxItems));
+    this.sharedDataService.setData(this.giftBoxItems)
+    this.router.navigate(['/check-out']);
+  }
   showDialog() {
     this.visible = true;
   }
@@ -62,19 +76,19 @@ export class GiftsComponent implements OnInit {
 
   removeItemFromArray(item: number): void {
     const index = this.giftBoxItems.indexOf(item);
-    
+
     if (index !== -1) {
-        // Item exists in the array, so remove it
-        this.giftBoxItems.splice(index, 1);
-        this.getGiftBoxItems();
-        this.giftboxCount = this.giftBoxItems.length;
-        console.log(`Item ${item} removed. Updated array:`, this.giftBoxItems);
+      // Item exists in the array, so remove it
+      this.giftBoxItems.splice(index, 1);
+      this.getGiftBoxItems();
+      this.giftboxCount = this.giftBoxItems.length;
+      console.log(`Item ${item} removed. Updated array:`, this.giftBoxItems);
     } else {
-        console.log(`Item ${item} not found in the array.`);
+      console.log(`Item ${item} not found in the array.`);
     }
-}
+  }
   getGiftBoxItems(): void { //Get GiftBox items details
-    console.log("ffff" + this.giftBoxItems);
+    //console.log("ffff" + this.giftBoxItems);
     this.giftItemsService.getAllGiftBoxItems(this.giftBoxItems).subscribe((data: any) => {
       if (data.status) {
         this.giftBoxItemsDetails = data.payload[0].map((item: any) => ({
@@ -91,7 +105,7 @@ export class GiftsComponent implements OnInit {
         console.error('Error fetching items:', error);
       });
 
-      this.showDialog();
+    this.showDialog();
   }
 
   fetchAllItems(): void {
@@ -120,7 +134,7 @@ export class GiftsComponent implements OnInit {
     return items;
   }
 
-  clearMsg(){
+  clearMsg() {
     this.messageService.clear();
   }
   giftAlreadyAddedMsg() {

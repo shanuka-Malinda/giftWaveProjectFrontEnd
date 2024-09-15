@@ -1,1 +1,31 @@
-<p>check-out works!</p>
+<div class="main">
+    <h2 class="count">{{giftboxCount}} &nbsp;gifts are selected</h2>
+    <div class="detail">
+        <div *ngFor="let item of giftBoxitems" class="giftBox-card">
+            <div class="gift-image">
+                <img [src]="item.image" alt="{{ item.name }}" height="70px" class="clickable-image"
+                    (click)="openImagePreview(item.image)" />
+
+                <!-- Modal for image preview -->
+                <div *ngIf="showModal" class="modal" (click)="closeModal()">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" [src]="previewImage" alt="Image Preview" />
+                </div>
+            </div>
+            <div class="gift-info">
+                <h4 class="gift-name"> [#{{ item.id }}] &nbsp; {{ item.name }}</h4>
+                <div class="gift-price">{{ item.unitPrice }} LKR</div>
+            </div>
+            <p-button icon="pi pi-times" [rounded]="true" severity="danger" [outlined]="true"
+                (onClick)="removeItemFromArray(item.id)" />
+        </div>
+    </div>
+    <div class="check-out">
+        shanuka
+        <p>Price=== {{totalPrice}}</p>
+        <button routerLink="/payment">Pay</button>
+    </div>
+</div>
+
+
+<!-- <p>{{giftBoxitems|json}}</p> -->

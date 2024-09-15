@@ -7,6 +7,7 @@ import { UsersComponent } from './admin/pages/users/users.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { PaymentComponent } from './user/component/payment/payment.component';
 import { CheckOutComponent } from './user/pages/check-out/check-out.component';
 import { GiftsComponent } from './user/pages/gifts/gifts.component';
 import { HomeComponent } from './user/pages/home/home.component';
@@ -21,7 +22,8 @@ const routes: Routes = [
       { path: "home", component: HomeComponent },
       { path: "gifts", component: GiftsComponent },
       { path: "terms", component: TermsAndServicesComponent },
-      {path:"check-out", component:CheckOutComponent}
+      {path:"check-out", component:CheckOutComponent},
+      {path:"payment",component:PaymentComponent}
     ]
   },
   {
@@ -33,7 +35,7 @@ const routes: Routes = [
   },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "**", component: NotFoundPageComponent }
+  { path: "**", component: NotFoundPageComponent },
 ];
 
 @NgModule({
