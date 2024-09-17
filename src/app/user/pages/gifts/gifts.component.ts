@@ -89,23 +89,28 @@ export class GiftsComponent implements OnInit {
   }
   getGiftBoxItems(): void { //Get GiftBox items details
     //console.log("ffff" + this.giftBoxItems);
-    this.giftItemsService.getAllGiftBoxItems(this.giftBoxItems).subscribe((data: any) => {
-      if (data.status) {
-        this.giftBoxItemsDetails = data.payload[0].map((item: any) => ({
-          ...item,
-          image: item.image ? 'data:image/png;base64,' + item.image : ''
-        }));
-        // this.giftBoxItemsDetails = data.payload[0];
-        console.log(this.giftBoxItemsDetails);
-      } else {
-        console.error(data.errorMessages);
-      }
-    },
-      (error) => {
-        console.error('Error fetching items:', error);
-      });
+    if (this.giftBoxItems.length == 0) {
+      this.emptyGiftBoxMsg();
+      //this.clearMsg();
+    } else {
+      this.giftItemsService.getAllGiftBoxItems(this.giftBoxItems).subscribe((data: any) => {
+        if (data.status) {
+          this.giftBoxItemsDetails = data.payload[0].map((item: any) => ({
+            ...item,
+            image: item.image ? 'data:image/png;base64,' + item.image : ''
+          }));
+          // this.giftBoxItemsDetails = data.payload[0];
+          console.log(this.giftBoxItemsDetails);
+        } else {
+          console.error(data.errorMessages);
+        }
+      },
+        (error) => {
+          console.error('Error fetching items:', error);
+        });
 
-    this.showDialog();
+      this.showDialog();
+    }
   }
 
   fetchAllItems(): void {
@@ -143,6 +148,9 @@ export class GiftsComponent implements OnInit {
 
   giftAddedMsg() {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Item successfully added to gift Box!' });
+  }
+  emptyGiftBoxMsg() {
+    this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'GiftBox is empty!' });
   }
 }
 

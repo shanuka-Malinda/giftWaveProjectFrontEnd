@@ -30,6 +30,7 @@ import { PanelModule } from 'primeng/panel';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { RippleModule } from 'primeng/ripple';
 import { SidebarModule } from 'primeng/sidebar';
+import { StepperModule } from 'primeng/stepper';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
@@ -47,12 +48,12 @@ import { CarouselComponent } from './user/component/carousel/carousel.component'
 import { FooterComponent } from './user/component/footer/footer.component';
 import { HeaderComponent } from './user/component/header/header.component';
 import { NavBarComponent } from './user/component/nav-bar/nav-bar.component';
+import { PaymentComponent } from './user/component/payment/payment.component';
+import { CheckOutComponent } from './user/pages/check-out/check-out.component';
 import { GiftsComponent } from './user/pages/gifts/gifts.component';
 import { HomeComponent } from './user/pages/home/home.component';
 import { TermsAndServicesComponent } from './user/pages/terms-and-services/terms-and-services.component';
 import { UserLayoutComponent } from './user/user-layout/user-layout.component';
-import { CheckOutComponent } from './user/pages/check-out/check-out.component';
-import { PaymentComponent } from './user/component/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { PaymentComponent } from './user/component/payment/payment.component';
     
   ],
   imports: [
+    StepperModule,
     RippleModule,
     ProgressBarModule,
     InputTextareaModule,

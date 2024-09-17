@@ -23,7 +23,7 @@
     <div style="display: flex;align-items: center;">
         <p-button (onClick)=" getGiftBoxItems()" label="Box" icon="pi pi-gift" class="box" badge="{{giftboxCount}}"
             outlined="true" badgeClass="p-badge-contrast" />
-        <p-dialog header="Gifts Box" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }"
+        <p-dialog header="Gifts Box" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem',minHeight:'300px'}"
             [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
 
             <div *ngFor="let item of giftBoxItemsDetails" class="giftBox-card">

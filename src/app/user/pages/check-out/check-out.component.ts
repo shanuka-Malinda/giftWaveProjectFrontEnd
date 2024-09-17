@@ -15,9 +15,29 @@ export class CheckOutComponent implements OnInit {
   giftboxCount: number = 0;
   totalPrice: any;
 
+  date: any;
+  note!: any;
+  zip:any;
+  address:any;
+   
+
+  item = {
+    giftName: "",
+    SendingDate: "",
+    zip: "",
+    recieverAddress: "",
+    commonStatus: "ACTIVE",
+    itemIds: [],
+    userId: ""
+  }
+
+
   //------image-priview--------
   showModal: boolean = false;
   previewImage: string = '';
+
+
+
   constructor(
     private router: Router,
     private sharedDataService: SharedDataService,
@@ -35,7 +55,7 @@ export class CheckOutComponent implements OnInit {
       this.getGiftBoxItems();
     }
     this.checkOut();
-    this.getTotalPrice();
+   // this.getTotalPrice();
   }
   // Method to open the image preview modal
   openImagePreview(image: string) {
@@ -60,7 +80,7 @@ export class CheckOutComponent implements OnInit {
 
         const totalPrice = this.giftBoxitems.reduce((acc, item) => acc + parseFloat(item.unitPrice), 0);
         console.log(totalPrice);  // Outputs the total price of all products
-        this.totalPrice=totalPrice;
+        this.totalPrice = totalPrice;
       } else {
         console.error(data.errorMessages);
       }
@@ -87,22 +107,22 @@ export class CheckOutComponent implements OnInit {
     }
   }
 
-  getTotalPrice(){
-    // const allIds = this.giftBoxitems.map(item => item.id);
-    // console.log("MMMMMMMMMMMMMMMM"+allIds);
-  }
+  savereciever() {
+  this.item.recieverAddress=this.address;
+  this.item.SendingDate=this.date;
+  this.item.giftName=this.note;
+  this.item.zip=this.zip;
 
+  console.log(this.item);
+  }
+  saveGift(){
+     this.item.userId=this.id;
+     this.item.itemIds=this.receivedData;
+     console.log(this.item);
+  }
   checkOut() {
     const today = new Date();
-    const item = {
-      giftName: "",
-      SendingDate: "",
-      commonStatus: "ACTIVE",
-      itemIds: this.receivedData,
-      userId: this.id
-    }
-    console.log(item);
-    console.log(today);
+    this.saveGift();
   }
 
 }
