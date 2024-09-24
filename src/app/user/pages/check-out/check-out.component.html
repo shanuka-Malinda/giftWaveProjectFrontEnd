@@ -1,3 +1,4 @@
+<p-toast />
 <div class="main">
     <h2 class="count">{{giftboxCount}} &nbsp;gifts are selected</h2>
     <div class="detail">
@@ -47,12 +48,12 @@
                 </ul>
             </div>
             <div class="button-get-plan btnBg1">
-                <a href="payment" >
+                <a href="payment" (click)="checkOut()" >
                     <span>Place order</span>
                 </a>
             </div>
             <div class="button-get-plan btnBg2">
-                <a href="payment" >
+                <a (click)="saveGift()" >
                     <span>Save order</span>
                 </a>
             </div>

@@ -12,14 +12,15 @@ $hover-color: #105583;
 }
 
 .navbar {
-   // box-shadow: 1px 1px 20px 1px darkgray;
+    // box-shadow: 1px 1px 20px 1px darkgray;
+    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 5px 20px;
     background-color: $primary-color;
     color: $secondary-color;
-    border-radius: 8px;
+    //  border-radius: 8px;
     margin: 0;
 
     .navbar-brand {

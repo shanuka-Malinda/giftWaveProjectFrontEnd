@@ -4,7 +4,7 @@
         <img src="/assets/register.jpeg" alt="Registration Image">
     </div>
     <div class="lgform">
-          <h2>Register</h2>
+        <h2>Register</h2>
         <form class="form" (ngSubmit)="register()">
             <div style="display: flex;width: 100%;justify-content: space-between;">
                 <div class="inputForm">
@@ -27,7 +27,7 @@
                     <input id="file-input" type="file" (change)="onImageSelected($event)" accept="image/*">
                 </div>
             </div>
-           
+
 
             <div class="inputForm">
                 <input placeholder="Address" class="input" type="text" [(ngModel)]="user.address" name="address">

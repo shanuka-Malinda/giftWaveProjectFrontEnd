@@ -1,9 +1,11 @@
+<p-toast />
 <div class="super">
   <h2><i class="pi pi-credit-card"></i>
     Payment</h2>
   <h3>Order from GiftWave</h3>
 
-  <h4>Total amount: <span> 3000</span></h4>
+  <h4>Total amount: <span> {{amount}}</span></h4>
+  <p>Gift box id:[#]{{giftBoxID}}</p>
   <div id="card-element">
     <!-- A Stripe Element will be inserted here. -->
   </div>

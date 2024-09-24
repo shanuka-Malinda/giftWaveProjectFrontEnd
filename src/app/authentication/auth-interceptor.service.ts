@@ -2,10 +2,11 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-
+const TOKEN_HEADER_KEY = 'Authorization'; 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthInterceptorService implements HttpInterceptor {
 
   constructor(private authService:AuthService) { }
@@ -14,18 +15,26 @@ export class AuthInterceptorService implements HttpInterceptor {
     const token = this.authService.getToken();
 
     if (token) {
-      // Clone the request and add the authorization header
       const clonedRequest = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
         }
       });
-
-      // Pass the cloned request instead of the original request to the next handler
       return next.handle(clonedRequest);
     }
 
-    // If no token is available, pass the original request
     return next.handle(req);
+
+
+
+    // let authReq = req;
+    // if (token != null) {
+    //   // for Spring Boot back-end
+    //   authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
+
+    //   // for Node.js Express back-end
+    //   // authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, token) });
+    // }
+    // return next.handle(authReq);
   }
 }

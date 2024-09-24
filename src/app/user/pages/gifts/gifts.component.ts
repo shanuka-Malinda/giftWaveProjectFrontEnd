@@ -23,10 +23,11 @@ export class GiftsComponent implements OnInit {
   giftBoxItemsDetails: any[] = [];
   giftboxCount: number = 0;
 
-  categories: any[] | undefined;
-  selectedCategories: string | any;
 
-  //user detils
+//--search-modal---
+items: any[] = [];
+searchTerm: string = '';
+isModalVisible: boolean = false;
 
 
   constructor(
@@ -35,14 +36,15 @@ export class GiftsComponent implements OnInit {
     private sharedDataService: SharedDataService,
     private router: Router,
   ) {
-    this.categories = [
-      { name: 'Foods', code: 'fd' }
-    ]
+
   }
 
   ngOnInit(): void {
     this.fetchAllItems();
-
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      localStorage.removeItem('giftBoxID');
+      localStorage.removeItem('giftBoxPrice');
+    }
   }
 
 
@@ -137,6 +139,19 @@ export class GiftsComponent implements OnInit {
       [items[i], items[j]] = [items[j], items[i]];
     }
     return items;
+  }
+
+  //search-function
+  onSearch(){
+    this.giftItemsService.searchByName(this.searchTerm).subscribe(data => {
+      this.items = data.map(item => this.giftItemsService.convertImageUrl(item)); // Convert images
+      this.isModalVisible = true; // Show the modal when data is fetched
+    }, error => {
+      console.error('Error fetching items:', error);
+    });
+  }
+  closeModal() {
+    this.isModalVisible = false; // Close the modal
   }
 
   clearMsg() {

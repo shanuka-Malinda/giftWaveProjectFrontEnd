@@ -10,7 +10,8 @@ $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    justify-content: space-between;
+    // justify-content: space-between;
+    justify-content: flex-end;
 
     .card {
         margin: 5px;
@@ -30,7 +31,7 @@ $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
 }
 
 //Gift Box style----------------
-.giftBox-card{
+.giftBox-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,18 +39,21 @@ $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
     box-shadow: 0 4px 8px $product-shadow-color;
     border-radius: 8px;
     padding: 10px;
-    .gift-info{
+
+    .gift-info {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         // background-color:gold;
-        min-width:400px;
-        .gift-price{
+        min-width: 400px;
+
+        .gift-price {
             color: #033f8d;
             font-weight: bold;
         }
     }
 }
+
 .store {
     display: flex;
     flex-wrap: wrap;
@@ -144,4 +148,41 @@ $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
 
         }
     }
+}
+
+//------Modal-Service-----------
+.modal {
+    display: block;
+    position: fixed;
+    border-radius: 8px;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

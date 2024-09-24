@@ -23,4 +23,8 @@ export class UserService {
     const params = new HttpParams().set('userName', username);
     return this.http.get<boolean>(this.api+"/check-username", { params });
   }
+
+  getAllUser(): Observable<any> {
+    return this.http.get(this.api + "/getAll");
+  }
 }

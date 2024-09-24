@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { AuthService } from '../../../services/auth.service';
+import { GiftBoxService } from '../../../services/gift-box.service';
 import { GiftItemsService } from '../../../services/gift-items.service';
 import { SharedDataService } from '../../../services/shared-data.service';
 
@@ -17,18 +20,22 @@ export class CheckOutComponent implements OnInit {
 
   date: any;
   note!: any;
-  zip:any;
-  address:any;
-   
+  zip: any;
+  address: any;
+
+  giftBoxID: any;
 
   item = {
     giftName: "",
-    SendingDate: "",
-    zip: "",
+    createdAt: "",
+    sendingDate: "",
     recieverAddress: "",
+    zip: "",
+    totalPrice: "",
     commonStatus: "ACTIVE",
     itemIds: [],
     userId: ""
+
   }
 
 
@@ -42,6 +49,9 @@ export class CheckOutComponent implements OnInit {
     private router: Router,
     private sharedDataService: SharedDataService,
     private giftItemsService: GiftItemsService,
+    private giftBoxService: GiftBoxService,
+    private authService: AuthService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -54,8 +64,9 @@ export class CheckOutComponent implements OnInit {
     if (this.receivedData != null) {
       this.getGiftBoxItems();
     }
-    this.checkOut();
-   // this.getTotalPrice();
+
+
+    console.log("JWT" + this.authService.getToken());
   }
   // Method to open the image preview modal
   openImagePreview(image: string) {
@@ -108,21 +119,65 @@ export class CheckOutComponent implements OnInit {
   }
 
   savereciever() {
-  this.item.recieverAddress=this.address;
-  this.item.SendingDate=this.date;
-  this.item.giftName=this.note;
-  this.item.zip=this.zip;
 
-  console.log(this.item);
+    const selectedDate = new Date(this.date);
+
+    this.item.recieverAddress = this.address;
+    this.item.sendingDate = selectedDate.toISOString().split('T')[0];
+    this.item.giftName = this.note;
+    this.item.zip = this.zip;
+
+    console.log(this.item);
+
+    this.address = '';
+    this.note = '';
+    this.zip = '';
   }
-  saveGift(){
-     this.item.userId=this.id;
-     this.item.itemIds=this.receivedData;
-     console.log(this.item);
+  saveGift() {
+
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const day = currentDate.getDate().toString().padStart(2, '0');
+
+    this.item.createdAt = `${year}-${month}-${day}`;
+    this.item.userId = this.id;
+    this.item.itemIds = this.receivedData;
+    this.item.totalPrice = this.totalPrice;
+    console.log(this.item);
+    if (this.item.recieverAddress == '' ||
+      this.item.giftName == '' ||
+      this.item.zip == '' ||
+      this.item.sendingDate == '') {
+      alert("Fill receiver details");
+    } else {
+      this.giftBoxService.addGiftItem(this.item).subscribe(
+        {
+          next:
+            response => {
+              const id = response.payload;
+              this.giftBoxID = id;
+              localStorage.setItem('giftBoxID', id);
+              localStorage.setItem('giftBoxPrice', this.totalPrice);
+              console.log("id ::" + id);
+              this.GiftBoxSaveSuccessMsg();
+            }
+          ,
+          error: (error) => {
+            console.error("Error:", error);
+            this.GiftBoxSaveUnsuccessMsg();
+          }
+        }
+      )
+    }
   }
   checkOut() {
-    const today = new Date();
     this.saveGift();
   }
-
+  GiftBoxSaveSuccessMsg() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'GiftBox Successfully Saved!' });
+  }
+  GiftBoxSaveUnsuccessMsg() {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'GiftBox saving Unsuccessfully!' });
+  }
 }

@@ -12,6 +12,7 @@ import { BadgeModule } from 'primeng/badge';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
+import { ChartModule } from 'primeng/chart';
 import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
@@ -32,10 +33,12 @@ import { RippleModule } from 'primeng/ripple';
 import { SidebarModule } from 'primeng/sidebar';
 import { StepperModule } from 'primeng/stepper';
 import { TableModule } from 'primeng/table';
+import { TabViewModule } from 'primeng/tabview';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { DashComponent } from './admin/pages/dash/dash.component';
+import { OrdersComponent } from './admin/pages/orders/orders.component';
 import { ProductsComponent } from './admin/pages/products/products.component';
 import { UsersComponent } from './admin/pages/users/users.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -44,6 +47,7 @@ import { AuthInterceptorService } from './authentication/auth-interceptor.servic
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { SuccessPaymentMsgComponent } from './success-payment-msg/success-payment-msg.component';
 import { CarouselComponent } from './user/component/carousel/carousel.component';
 import { FooterComponent } from './user/component/footer/footer.component';
 import { HeaderComponent } from './user/component/header/header.component';
@@ -54,7 +58,6 @@ import { GiftsComponent } from './user/pages/gifts/gifts.component';
 import { HomeComponent } from './user/pages/home/home.component';
 import { TermsAndServicesComponent } from './user/pages/terms-and-services/terms-and-services.component';
 import { UserLayoutComponent } from './user/user-layout/user-layout.component';
-
 @NgModule({
   declarations: [
     
@@ -76,6 +79,8 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     UsersComponent,
     CheckOutComponent,
     PaymentComponent,
+    SuccessPaymentMsgComponent,
+    OrdersComponent,
     
   ],
   imports: [
@@ -107,7 +112,8 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     SidebarModule,
     AccordionModule,
     BadgeModule,FieldsetModule,PanelModule,
-    DialogModule,DataViewModule,TableModule,BreadcrumbModule
+    DialogModule,DataViewModule,TableModule,BreadcrumbModule,
+    ChartModule,TabViewModule
   ],
   providers: [
     provideClientHydration(),

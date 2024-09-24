@@ -1,16 +1,17 @@
-.path{
+.path {
     position: absolute;
     left: 4rem;
-    top:6px ;
+    top: 6px;
     height: 40px;
 }
 
 
-.top-bar{
+.top-bar {
     width: 100%;
     display: flex;
     justify-content: center;
 }
+
 .card {
     padding: 1rem;
     background-color: #fff;
@@ -34,7 +35,7 @@
     border-radius: 9999px;
 }
 
-.title span svg {
+.title span i {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -88,4 +89,21 @@
     width: 76%;
     height: 100%;
     border-radius: 0.25rem;
+}
+
+//-----------chart-style------------
+.chart {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+   // background-color: #02972f;
+
+   .card{
+    width: 700px;
+    height: 300px;
+   }
 }

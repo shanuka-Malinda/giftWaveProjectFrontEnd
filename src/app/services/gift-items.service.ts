@@ -23,4 +23,17 @@ export class GiftItemsService {
   getAllGiftBoxItems(product: number[]): Observable<any> {
     return this.http.post<any>(this.api+"/by-ids", product);
   }
+  searchByName(name: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.api}/search?name=${name}`);
+  }
+
+  convertImageUrl(item: any): any {
+    if (item.image) {
+      return {
+        ...item,
+        image: `data:image/png;base64,${item.image}` // Convert base64 image to URL
+      };
+    }
+    return item;
+  }
 }
