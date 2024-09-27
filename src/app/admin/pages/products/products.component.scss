@@ -4,7 +4,12 @@
     top: 6px;
     height: 40px;
 }
-
+.head {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
 .card {
     padding: 1.5rem;
     background-color: #f9f9f9;
@@ -139,17 +144,23 @@
 .product-form {
     background: #ffffff;
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    max-width: 600px;
+    //border-radius: 15px;
+    // box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    max-width: 70%;
     margin: 20px auto;
     font-family: 'Roboto', sans-serif;
+    form{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
 
     select {
         width: 100%;
         padding: 14px 20px;
         border: 1px solid #cccccc;
-        border-radius: 50px;
+        border-radius: 10px;
         font-size: 16px;
         color: #333333;
         background: #f9f9f9;
@@ -177,7 +188,7 @@
     // Optional: Custom styling for the error message
     .form-group {
         position: relative;
-
+        width: 400px;
         div {
             margin-top: 8px;
             color: #e74c3c;
@@ -228,7 +239,7 @@
             width: 100%;
             padding: 14px 20px;
             border: 1px solid #cccccc;
-            border-radius: 50px;
+            border-radius: 10px;
             font-size: 16px;
             color: #333333;
             background: #f9f9f9;

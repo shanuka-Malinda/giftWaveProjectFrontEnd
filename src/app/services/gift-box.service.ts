@@ -24,4 +24,14 @@ export class GiftBoxService {
   getGiftsByUserId(userId: string): Observable<any> {
     return this.http.get(`${this.api}/getAllByUser/${userId}`);
   }
+
+  getAllGiftBoxNew(): Observable<any> {
+    return this.http.get(this.api + "/getAllNew");
+  }
+  getAllGiftBoxAccepted(): Observable<any> {
+    return this.http.get(this.api + "/getAllAcc");
+  }
+  getAllGiftBoxDelivered(): Observable<any> {
+    return this.http.get(this.api + "/getAllDeli");
+  }
 }
