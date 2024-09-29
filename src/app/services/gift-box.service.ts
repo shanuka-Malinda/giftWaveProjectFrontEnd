@@ -34,4 +34,7 @@ export class GiftBoxService {
   getAllGiftBoxDelivered(): Observable<any> {
     return this.http.get(this.api + "/getAllDeli");
   }
+  updateCommonStatus(data: any): Observable<any> {
+    return this.http.put(this.api+"/status", data,{ responseType: 'json' });
+  }
 }

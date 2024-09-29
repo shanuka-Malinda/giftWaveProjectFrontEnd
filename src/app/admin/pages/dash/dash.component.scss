@@ -16,7 +16,8 @@
     padding: 1rem;
     background-color: #fff;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    max-width: 320px;
+    max-width: 300px;
+    padding: 10px;
     border-radius: 20px;
     margin: 1%;
 }
@@ -100,10 +101,12 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-   // background-color: #02972f;
+    // background-color: #02972f;
 
-   .card{
-    width: 700px;
-    height: 300px;
-   }
+    .cardChart {
+        width: 1000px;
+        height: auto;
+        padding: 10px;
+        margin-left: 30px;
+    }
 }

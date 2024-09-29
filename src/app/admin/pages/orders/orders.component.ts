@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { Router } from '@angular/router';
+import { MenuItem, MessageService } from 'primeng/api';
 import { GiftBoxService } from '../../../services/gift-box.service';
 
 @Component({
@@ -20,9 +21,11 @@ export class OrdersComponent implements OnInit {
       { label: 'Orders' }
     ];
     this.getNewGiftBox();
+    this.getAcceptedGift();
+    this.getDeliveredGift();
   }
 
-  constructor(private giftBoxService: GiftBoxService) { }
+  constructor(private giftBoxService: GiftBoxService,private messageService: MessageService,private router: Router) { }
   getNewGiftBox() {
     this.giftBoxService.getAllGiftBoxNew().subscribe(data => {
       // Assuming data.payload contains the array of users
@@ -45,5 +48,31 @@ export class OrdersComponent implements OnInit {
       this.fetchingDeliveredGift = data.payload;
     });
 
+  }
+
+  updateStatus(id:any,status:any){
+    const data={
+      id:id,
+      commonStatus:status
+    }
+    this.giftBoxService.updateCommonStatus(data).subscribe((response) => {
+      console.log('Paid  succeeded!');
+      console.log(response);
+      this.successMsg();
+      window.location.reload();
+       
+    }, (error) => {
+      console.log("ERROR PAID  :: " + error)
+     this.unsuccesMsg();
+    })
+
+
+  }
+ 
+  successMsg() {
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'GiftBox updated Successfully!' });
+  }
+  unsuccesMsg() {
+    this.messageService.add({ severity: 'error', summary: 'Success', detail: 'GiftBox updated Unsuccessfully!' });
   }
 }

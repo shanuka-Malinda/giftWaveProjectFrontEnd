@@ -1,8 +1,5 @@
 <div class="path">
-    <p-breadcrumb 
-        class="max-w-full" 
-        [model]="items" 
-        [home]="home" />
+    <p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
 </div>
 
 <div class="top-bar">
@@ -12,7 +9,7 @@
                 <i class="pi pi-shopping-cart" style="color: rgb(236, 236, 236)"></i>
             </span>
             <p class="title-text">
-                Orders
+                New Orders
             </p>
             <p class="percent">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1792 1792" fill="currentColor" height="20"
@@ -25,13 +22,9 @@
         </div>
         <div class="data">
             <p>
-                39,500
+                {{newGift}}
             </p>
-
-            <!-- <div class="range">
-                <div class="fill">
-                </div>
-            </div> -->
+            <span style="font-size: smaller;">(New paid gifts)</span>
         </div>
     </div>
 
@@ -54,13 +47,9 @@
         </div>
         <div class="data">
             <p>
-                39,500
+                {{userCounnt}}
             </p>
-
-            <!-- <div class="range">
-                <div class="fill">
-                </div>
-            </div> -->
+            <span style="font-size: smaller;">(Registered users)</span>
         </div>
     </div>
     <div class="card">
@@ -82,13 +71,9 @@
         </div>
         <div class="data">
             <p>
-                39,500
+                {{totalIncome}} LKR
             </p>
-
-            <!-- <div class="range">
-                <div class="fill">
-                </div>
-            </div> -->
+            <span style="font-size: smaller;">(Registered users)</span>
         </div>
     </div>
     <div class="card">
@@ -110,7 +95,7 @@
         </div>
         <div class="data">
             <p>
-                39,500
+                {{deliveredGift}}
             </p>
 
             <!-- <div class="range">
@@ -122,10 +107,10 @@
 </div>
 
 <div class="chart">
-    <div class="card">
-        <p-chart type="bar" [data]="basicData" [options]="basicOptions" style="width: 500px; height: 300px;" />
+    <div class="cardChart">
+        <p-chart type="bar" [data]="basicData" [options]="basicOptions" style="min-width: 800px; " />
     </div>
-    <div class="card flex justify-content-center">
+    <!-- <div class="card flex justify-content-center">
         <p-chart type="doughnut" [data]="data" [options]="options" />
-    </div>
+    </div> -->
 </div>
