@@ -24,6 +24,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MegaMenuModule } from 'primeng/megamenu';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { MultiSelectModule } from 'primeng/multiselect';
@@ -58,6 +59,7 @@ import { GiftsComponent } from './user/pages/gifts/gifts.component';
 import { HomeComponent } from './user/pages/home/home.component';
 import { TermsAndServicesComponent } from './user/pages/terms-and-services/terms-and-services.component';
 import { UserLayoutComponent } from './user/user-layout/user-layout.component';
+ 
 @NgModule({
   declarations: [
     
@@ -113,14 +115,15 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     AccordionModule,
     BadgeModule,FieldsetModule,PanelModule,
     DialogModule,DataViewModule,TableModule,BreadcrumbModule,
-    ChartModule,TabViewModule
+    ChartModule,TabViewModule,MegaMenuModule, 
   ],
   providers: [
+     
     provideClientHydration(),
     MessageService,
     provideHttpClient(withFetch()),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
-    
+     
   ],
   bootstrap: [AppComponent]
 })

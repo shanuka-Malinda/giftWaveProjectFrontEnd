@@ -5,6 +5,11 @@ import { Component, OnInit } from '@angular/core';
     styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
+
+   
+
+    
+
     ngOnInit(): void {
         if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
             localStorage.removeItem('giftBoxID');

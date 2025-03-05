@@ -8,10 +8,23 @@ $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
 
 .tool {
     display: flex;
+    position: relative;
     width: 100%;
     flex-wrap: wrap;
     // justify-content: space-between;
     justify-content: flex-end;
+
+    .catCard {
+        position: absolute;
+        left: 0;
+
+        ::ng-deep .p-megamenu {
+            height: 45px;
+            padding: 0;
+            margin: 5px;
+        }
+
+    }
 
     .card {
         margin: 5px;
@@ -27,6 +40,7 @@ $button-bg-gradient: linear-gradient(to right, #033f8d, #1d849bae);
 
     ::ng-deep .buy-button .p-button {
         border: 1px solid #1d849bae;
+        margin: 10px;
     }
 }
 

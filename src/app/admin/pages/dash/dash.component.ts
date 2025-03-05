@@ -2,6 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AdminService } from '../../../services/admin.service';
+import { UtilService } from '../../../services/util.service';
 
 @Component({
     selector: 'app-dash',
@@ -28,8 +29,17 @@ export class DashComponent implements OnInit {
     data: any;
     options: any;
 
-    constructor(private adminService: AdminService,@Inject(PLATFORM_ID) private platformId: Object) {}
-    
+    //---------------Exchange rate---------------
+    usdToLkrRate: number | null = null;
+    errorMessage: string = '';
+    date: string = '';
+
+    constructor(
+        private adminService: AdminService,
+        @Inject(PLATFORM_ID) private platformId: Object,
+        private utilService: UtilService
+    ) { }
+
     ngOnInit() {
         this.getItemCount();
         this.getUserCount();
@@ -38,6 +48,13 @@ export class DashComponent implements OnInit {
         this.getOnprocessingGiftCount();
         this.getTotalIncome();
         this.getTotalIncomeMonths();
+
+        this.utilService.getUsdToLkrRate().subscribe(data => {
+            this.usdToLkrRate = data.rate;
+            this.date = data.date;
+        });
+
+
 
         this.items = [
             { label: 'GiftWave' },
@@ -48,83 +65,83 @@ export class DashComponent implements OnInit {
         this.home = { icon: 'pi pi-slack', routerLink: '/admin/dash' };
 
         if (isPlatformBrowser(this.platformId)) {
-        const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--text-color');
-        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+            const documentStyle = getComputedStyle(document.documentElement);
+            const textColor = documentStyle.getPropertyValue('--text-color');
+            const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+            const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
-        this.basicData = {
-            labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JULY', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-            datasets: [
-                {
-                    label: 'Current Year Monthly Sales',
-                    data: this.totalIncome12Months,
-                    backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)'],
-                    borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
-                    borderWidth: 1
-                }
-            ]
-        };
-
-        this.basicOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: textColor
+            this.basicData = {
+                labels: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JULY', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+                datasets: [
+                    {
+                        label: 'Current Year Monthly Sales',
+                        data: this.totalIncome12Months,
+                        backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+                        borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
+                        borderWidth: 1
                     }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
+                ]
+            };
+
+            this.basicOptions = {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: textColor
+                        }
                     }
                 },
-                x: {
-                    ticks: {
-                        color: textColorSecondary
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: textColorSecondary
+                        },
+                        grid: {
+                            color: surfaceBorder,
+                            drawBorder: false
+                        }
                     },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
+                    x: {
+                        ticks: {
+                            color: textColorSecondary
+                        },
+                        grid: {
+                            color: surfaceBorder,
+                            drawBorder: false
+                        }
                     }
                 }
-            }
-        };  //close-bar-chart
+            };  //close-bar-chart
 
-        //---------pie-chart----------
+            //---------pie-chart----------
 
-        const documentStyle1 = getComputedStyle(document.documentElement);
-        const textColor1 = documentStyle.getPropertyValue('--text-color');
+            const documentStyle1 = getComputedStyle(document.documentElement);
+            const textColor1 = documentStyle.getPropertyValue('--text-color');
 
-        this.data = {
-            labels: ['A', 'B', 'C', 'E', 'F'],
-            datasets: [
-                {
-                    data: [300, 50, 100, 150, 75],
-                    backgroundColor: [documentStyle1.getPropertyValue('--blue-500'), documentStyle1.getPropertyValue('--yellow-500'), documentStyle1.getPropertyValue('--green-500')],
-                    hoverBackgroundColor: [documentStyle1.getPropertyValue('--blue-400'), documentStyle1.getPropertyValue('--yellow-400'), documentStyle1.getPropertyValue('--green-400')]
-                }
-            ]
-        };
+            this.data = {
+                labels: ['A', 'B', 'C', 'E', 'F'],
+                datasets: [
+                    {
+                        data: [300, 50, 100, 150, 75],
+                        backgroundColor: [documentStyle1.getPropertyValue('--blue-500'), documentStyle1.getPropertyValue('--yellow-500'), documentStyle1.getPropertyValue('--green-500')],
+                        hoverBackgroundColor: [documentStyle1.getPropertyValue('--blue-400'), documentStyle1.getPropertyValue('--yellow-400'), documentStyle1.getPropertyValue('--green-400')]
+                    }
+                ]
+            };
 
 
-        this.options = {
-            cutout: '60%',
-            plugins: {
-                legend: {
-                    labels: {
-                        color: textColor1
+            this.options = {
+                cutout: '60%',
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: textColor1
+                        }
                     }
                 }
-            }
-        };
-    }
+            };
+        }
 
     }
 
@@ -163,7 +180,7 @@ export class DashComponent implements OnInit {
     getTotalIncomeMonths() {
         this.adminService.getTotalIncomelast12Months().subscribe(data => {
             this.totalIncome12Months = data;  // Assign the data to the array
-           // this.updateChart();  // Refresh the chart after data is loaded
+            // this.updateChart();  // Refresh the chart after data is loaded
         });
     }
 

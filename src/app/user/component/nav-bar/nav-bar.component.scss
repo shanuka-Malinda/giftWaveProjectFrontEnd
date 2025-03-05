@@ -7,8 +7,9 @@ $hover-color: #105583;
 }
 
 .active {
-    border-bottom: 2px solid #105583;
-    ;
+    //border-bottom: 2px solid #105583;
+    font-weight: 700;
+    // background-color: #f78c00;
 }
 
 .navbar {
@@ -17,7 +18,7 @@ $hover-color: #105583;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 20px;
+    padding: 5px 20px 10px;
     background-color: $primary-color;
     color: $secondary-color;
     //  border-radius: 8px;
@@ -56,10 +57,19 @@ $hover-color: #105583;
                 color: $secondary-color;
                 padding: 10px 15px;
                 transition: background-color 0.3s ease;
-
+                border-radius: 6px;
+                .pi{
+                    color: #00445b;
+                }
                 &:hover {
-                    border-bottom: 2px solid $hover-color;
-                    color: $secondary-color;
+                    //  border-bottom: 2px solid $hover-color;
+                    // color: $secondary-color;
+                    color: #fefefe;
+                    background-color: #00445b;
+                    border-radius: 6px;
+                    i{
+                        color: #fefefe;
+                    }
                 }
             }
         }
@@ -76,7 +86,7 @@ $hover-color: #105583;
                 background-color: $primary-color;
                 box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                 z-index: 1000;
-                width: 200px;
+                width: 300px;
 
                 .navbar-item {
                     margin: 8px;

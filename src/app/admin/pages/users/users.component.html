@@ -5,7 +5,12 @@
 
 
 <div class="card flex justify-content-center">
-    <h3>Registerd Users</h3>
+    <div style="display: flex;width: 100%;justify-content: space-between;align-items: center;border-bottom: 1px solid gainsboro;">
+    <h3 style="color: cornflowerblue;font-size: 30px;margin: 15px;">Registerd Users</h3>
+    <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-search" />
+        <input type="text" pInputText placeholder="Search" />
+    </p-iconField></div><br><br>
     <p-accordion class="w-full" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
         <p-accordionTab *ngFor="let user of fetchingUser">
             <ng-template pTemplate="header">
@@ -15,7 +20,7 @@
                     <span class="font-bold white-space-nowrap">
                         {{ user.userName}}
                     </span>
-                    <p-badge value="3" class="ml-auto mr-2" />
+                    <p-badge value="ACTIVE" class="ml-auto mr-2" />
                 </span>
             </ng-template>
             <p class="m-0">

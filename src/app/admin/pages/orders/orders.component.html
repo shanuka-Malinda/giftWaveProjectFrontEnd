@@ -5,7 +5,10 @@
 <div class="card">
     <p-tabView>
         <p-tabPanel header="New Orders">
-
+            <p-iconField iconPosition="left">
+                <p-inputIcon styleClass="pi pi-search" />
+                <input type="text" pInputText placeholder="Search" />
+            </p-iconField><br><br>
             <p-accordion class="w-full" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
                 <p-accordionTab *ngFor="let gift of fetchingNewGiftBox">
                     <ng-template pTemplate="header">
@@ -39,6 +42,10 @@
 
         </p-tabPanel>
         <p-tabPanel header="Ready to delivered">
+            <p-iconField iconPosition="left">
+                <p-inputIcon styleClass="pi pi-search" />
+                <input type="text" pInputText placeholder="Search" />
+            </p-iconField><br><br>
             <p-accordion class="w-full" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
                 <p-accordionTab *ngFor="let gift of fetchingAcceptedGift">
                     <ng-template pTemplate="header">
@@ -69,6 +76,10 @@
             </p-accordion>
         </p-tabPanel>
         <p-tabPanel header="Dilivered Orders">
+            <p-iconField iconPosition="left">
+                <p-inputIcon styleClass="pi pi-search" />
+                <input type="text" pInputText placeholder="Search" />
+            </p-iconField><br><br>
             <p-accordion class="w-full" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
                 <p-accordionTab *ngFor="let gift of fetchingDeliveredGift">
                     <ng-template pTemplate="header">

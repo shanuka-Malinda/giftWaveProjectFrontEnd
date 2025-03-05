@@ -59,7 +59,10 @@ export class OrdersComponent implements OnInit {
       console.log('Paid  succeeded!');
       console.log(response);
       this.successMsg();
-      window.location.reload();
+     // window.location.reload();
+     this.getNewGiftBox();
+     this.getAcceptedGift();
+     this.getDeliveredGift();
        
     }, (error) => {
       console.log("ERROR PAID  :: " + error)

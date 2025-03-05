@@ -7,26 +7,34 @@
 
     <ul class="navbar-menu" [ngClass]="{'active': menuActive}">
         <li class="navbar-item">
+
             <a class="navbar-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                 routerLink="/home">
+                <i class="pi pi-home"></i>
                 Home
             </a>
         </li>
         <li class="navbar-item">
+
             <a class="navbar-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                 routerLink="/gifts">
+                <i class="pi pi-gift"></i>
                 Gifts
             </a>
         </li>
         <li class="navbar-item">
+
             <a href="#" class="navbar-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
                 routerLink="/terms">
+                <i class="pi pi-verified"></i>
                 Terms & Conditions
             </a>
         </li>
         <li class="navbar-item" routerLinkActive="active">
+
             <a href="#" class="navbar-link">
-                Contact
+                <i class="pi pi-info-circle"></i>
+                Info
             </a>
         </li>
     </ul>
@@ -85,12 +93,9 @@
                             <strong>Zip Code:</strong> {{ gift.zip }} <br />
                             <strong>Total Price:</strong> {{ gift.totalPrice || 'N/A' }} <br />
                             <strong>Gift Description:</strong> {{ gift.giftName }} <br />
-                            <button pButton pRipple 
-                            [label]="'Place order'" 
-                            class="p-button-success"
-                            >
-                    </button>
-                    
+                            <button pButton pRipple [label]="'Place order'" class="p-button-success">
+                            </button>
+
                         </p>
                     </p-accordionTab>
                     <div *ngIf="gifts.length === 0">
